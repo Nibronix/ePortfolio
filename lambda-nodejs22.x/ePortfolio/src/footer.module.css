@@ -1,0 +1,16 @@
+.footer {
+    background-color: #007ffe00;
+    width: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 0.8rem;
+    margin-top: auto;
+    margin-bottom: 0px;
+}
+
+.footerContent {
+    text-align: center;
+}
+
+main {
+    flex: 1;
+}
