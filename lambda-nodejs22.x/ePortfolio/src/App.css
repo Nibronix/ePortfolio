@@ -69,3 +69,31 @@ html, body {
   max-width: 100;
   height: auto;
 }
+
+.nav-panel {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 100;
+}
+
+.nav-panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-panel li {
+  margin: 1rem 0;
+}
+
+.nav-panel a{
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.nav-panel a:hover {
+  color: rgba(0, 212, 255, 1);
+}

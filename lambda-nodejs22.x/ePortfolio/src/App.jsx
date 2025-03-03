@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css'
 import Footer from './footer'
 import Crunch from './assets/Crunch.jpg'
+import Nav from './Nav.jsx'
 
 function App() {
   const [showGradient, setShowGradient] = useState(false);
@@ -17,6 +18,7 @@ function App() {
   return (
     <>
       {showGradient && <div className="gradient-background" />}
+      <Nav />
       <div className="content">
         <h1 className="fade-in">Hello!</h1>
         <p className="fade-in delay">I'm Nicholas Marolla, a student at CSU Monterey Bay.</p>
