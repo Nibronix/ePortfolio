@@ -16,7 +16,7 @@ const Footer = () => {
                 />
                 <p style = {{
                     color: "#baf5ff"
-                }}>© 2025 California State University, Monterey Bay</p>
+                }}>© 2025 California State University, Monterey Bay.</p>
             </div>
         </footer>
     );
