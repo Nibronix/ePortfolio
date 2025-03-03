@@ -43,6 +43,10 @@ html, body {
   animation-delay: 2s;
 }
 
+.fade-in.delay-4s {
+  animation-delay: 4s;
+}
+
 .gradient-background {
   background: radial-gradient(circle at top center, rgba(0,212,255,1) 0%, rgba(0,12,31,1) 40%, rgba(0,12,31,1) 100%);
   opacity: 0;
