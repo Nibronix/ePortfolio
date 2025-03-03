@@ -8,42 +8,30 @@
   flex-direction: column;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 2s forwards;
 }
 
-.card {
-  padding: 2em;
+.fade-in.delay {
+  animation-delay: 1s;
+  margin-bottom: 20rem;
 }
 
-.read-the-docs {
-  color: #888;
+.content {
+  text-align: center;
 }
 
-main {
-  flex: 1;
+.content img {
+  max-width: 100;
+  height: auto;
 }
