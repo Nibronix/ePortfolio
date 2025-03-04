@@ -5,6 +5,7 @@ import Crunch from './assets/Crunch.jpg'
 import Nav from './Nav.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import About from './about.jsx'
+import Contact from './Contact.jsx'
 
 function Home() {
   const [showGradient, setShowGradient] = useState(false);
@@ -23,8 +24,8 @@ function Home() {
       <Nav />
       <div className="content">
         <h1 className="fade-in">Hello!</h1>
-        <p className="fade-in delay">Welcome to my website. I'm Nicholas Marolla, a student at CSU Monterey Bay.</p>
-        <p className="fade-in delay-4s" style = {{ marginTop: '5rem'}}>Cat tax.</p>
+        <p className="fade-in delay" style={{ fontSize: '24px' }}>Welcome to my website. I'm Nicholas Marolla, a student at CSU Monterey Bay.</p>
+        <p className="fade-in delay-4s" style={{ marginTop: '5rem', fontSize: '16px' }}>Cat tax.</p>
         <img
           src = {Crunch}
           alt = "My Latina Princess"
@@ -43,6 +44,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   );
