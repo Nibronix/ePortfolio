@@ -3,8 +3,10 @@ import './App.css'
 import Footer from './footer'
 import Crunch from './assets/Crunch.jpg'
 import Nav from './Nav.jsx'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import About from './about.jsx'
 
-function App() {
+function Home() {
   const [showGradient, setShowGradient] = useState(false);
 
   useEffect(() => {
@@ -21,7 +23,7 @@ function App() {
       <Nav />
       <div className="content">
         <h1 className="fade-in">Hello!</h1>
-        <p className="fade-in delay">I'm Nicholas Marolla, a student at CSU Monterey Bay.</p>
+        <p className="fade-in delay">Welcome to my website. I'm Nicholas Marolla, a student at CSU Monterey Bay.</p>
         <p className="fade-in delay-4s" style = {{ marginTop: '5rem'}}>Cat tax.</p>
         <img
           src = {Crunch}
@@ -32,6 +34,17 @@ function App() {
       </div>
       <Footer />
     </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </Router>
   );
 }
 
