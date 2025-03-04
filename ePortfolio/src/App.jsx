@@ -4,7 +4,7 @@ import Footer from './footer'
 import Crunch from './assets/Crunch.jpg'
 import Nav from './Nav.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import About from './about.jsx'
+import About from './About.jsx'
 import Contact from './Contact.jsx'
 
 function Home() {
