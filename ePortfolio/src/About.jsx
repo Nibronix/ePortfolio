@@ -24,6 +24,7 @@ function About() {
                 <h2 className = "fade-in delay-1s">
                     My name is Nicholas Marolla. I'm a student in CSU Monterey Bay majoring in Computer Science and wannabe software developer. 
                      I enjoy all things tech related, diving in from an obsessive interest in video games.
+
                 </h2>
 
         <div className="table-interests-container fade-in delay-2s">
