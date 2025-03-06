@@ -83,6 +83,18 @@ html, body {
   z-index: -1;
 }
 
+.gradient-background-hw1 {
+  background: radial-gradient(circle at top center, rgb(178, 0, 83) 0%, rgba(0,12,31,1) 40%, rgba(0,12,31,1) 100%);
+  opacity: 0;
+  animation: gradientFadeIn 2s forwards;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
 .content {
   text-align: center;
   z-index: 1;
