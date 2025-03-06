@@ -33,6 +33,11 @@ html, body {
   }
 }
 
+@font-face {
+  font-family: 'Silkscreen';
+  src: url('./fonts/slkscr.ttf') format('truetype');
+}
+
 .fade-in {
   opacity: 0;
   animation: fadeIn 2s forwards;
@@ -104,6 +109,10 @@ html, body {
 .content img {
   max-width: 100;
   height: auto;
+}
+
+nav {
+  font-family: 'Arial', sans-serif;
 }
 
 .nav-panel {
@@ -223,6 +232,10 @@ th {
   animation-delay: 1s;
 }
 
+.delay-2s {
+  animation-delay: 2s;
+}
+
 .delay-3s {
   animation-delay: 3s;
 }
@@ -246,4 +259,30 @@ th {
   align-items: center;
   margin-right: 4rem;
   height: 550px;
+}
+
+.VR-button-container button {
+  display: 'flex';
+  justify-content: center;
+  padding: 10px 20px;
+  font-size: 32px;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  border: 2px solid rgb(169, 0, 118);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  background: transparent;
+  font-family: 'Silkscreen', cursive;
+  width: 70%;
+  margin: 5px auto;
+}
+
+.VR-button-container button:hover {
+  background-color: rgba(0, 0, 0, 0);
+  transform: scale(1.1);
+  color: white;
+  box-shadow: 0 0 20px rgb(255, 0, 238);
 }
