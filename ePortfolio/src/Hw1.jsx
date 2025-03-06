@@ -15,7 +15,7 @@ function Hw1() {
     }, []);
 
     const HistoryButton = () => {
-        window.location.href = '/hw1-1';
+        window.location.href = '/hw1_1';
     };
 
     const TodayButton = () => {

@@ -112,14 +112,19 @@ html, body {
 }
 
 nav {
-  font-family: 'Arial', sans-serif;
+  font-family: ''Verdana'', sans-serif;
 }
 
 .nav-panel {
   position: fixed;
-  top: 1rem;
-  left: 1rem;
+  top: 0.5rem;
+  left: 0.5rem;
   z-index: 100;
+  background-color: rgba(0, 0, 0, 0.646);
+  border: 2px solid rgb(0, 192, 250);
+  border-radius: 10px;
+  padding: 0.5rem;
+  box-shadow: 0 0 20px rgba(0, 192, 250, 0.8);
 }
 
 .nav-panel ul {
@@ -129,7 +134,7 @@ nav {
 }
 
 .nav-panel li {
-  margin: 0.5rem 0;
+  margin: 0.25rem 0;
   text-align: left;
 }
 
@@ -194,7 +199,7 @@ th {
 }
 
 .interests-section {
-  margin: 1rem 0;
+  margin: 1rem 10rem;
 }
 
 .interests-section h3 {

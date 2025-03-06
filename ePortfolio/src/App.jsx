@@ -6,7 +6,8 @@ import Nav from './Nav.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import About from './About.jsx'
 import Contact from './Contact.jsx'
-import Hw1 from './Hw1.jsx'
+import Hw1 from './hw1.jsx'
+import Hw1_1 from './Hw1_1.jsx'
 
 function Home() {
   const [showGradient, setShowGradient] = useState(false);
@@ -47,6 +48,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/hw1" element={<Hw1 />} />
+        <Route path="/hw1_1" element={<Hw1_1 />} />
       </Routes>
     </Router>
   );
