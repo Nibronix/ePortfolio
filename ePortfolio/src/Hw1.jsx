@@ -19,11 +19,11 @@ function Hw1() {
     };
 
     const TodayButton = () => {
-        window.location.href = '/hw1-2';
+        window.location.href = '/hw1_2';
     };
 
     const FutureButton = () => {
-        window.location.href = '/hw1-3';
+        window.location.href = '/hw1_3';
     };
 
     return (

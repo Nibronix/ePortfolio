@@ -21,6 +21,10 @@ function Hw1_1() {    const [showGradient, setShowGradient] = useState(false);
         window.location.href = '/hw1';
     };
 
+    const SourceButton = () => {
+        window.location.href = 'https://www.vrs.org.uk/virtual-reality/history.html';
+    }
+
     return (
         <>
             {showGradient && <div className="gradient-background-hw1" />}
@@ -119,6 +123,21 @@ function Hw1_1() {    const [showGradient, setShowGradient] = useState(false);
                             raised 2.5 million dollars, marking a clear divide between the commercial failures of the past and a new age for Virtual Reality.
                         </p>
                     </div>
+                </div>
+
+                <div className="VR-button-container">
+                    <button 
+                        className="VR-button-container"
+                        onClick={SourceButton}
+                        style={{
+                            position: 'relative',
+                            display: 'block',
+                            margin: '2rem auto',
+                            width: '10rem'
+                        }}
+                        >
+                        SOURCE
+                        </button>
                 </div>
                 
             </div>
