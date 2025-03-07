@@ -111,6 +111,8 @@ h1.fade-in {
   z-index: 1;
   position: relative;
   padding-top: 20rem;
+  display: 'flex';
+  overflow: 'hidden';
 }
 
 .content img {

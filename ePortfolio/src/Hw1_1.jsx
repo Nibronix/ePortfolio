@@ -5,6 +5,7 @@ import Nav from './Nav.jsx'
 import VirtualBoy from './assets/VirtualBoy.jpg'
 import Stereoscopic from './assets/Stereoscopic.jpg'
 import Sword from './assets/Sword.jpg'
+import Oculus from './assets/Oculus.jpg'
 
 function Hw1_1() {    const [showGradient, setShowGradient] = useState(false);
 
@@ -24,8 +25,8 @@ function Hw1_1() {    const [showGradient, setShowGradient] = useState(false);
         <>
             {showGradient && <div className="gradient-background-hw1" />}
             <Nav />
-            <div className="content">
-                <h1 className="fade-in" style={{marginTop: '50rem'}}>Virtual Reality <br/>History</h1>
+            <div className="content" style={{ display: 'grid'}}>
+                <h1 className="fade-in" style={{marginTop: '200vh'}}>Virtual Reality <br/>History</h1>
 
                 <div className="VR-button-container">
                     <button 
@@ -63,7 +64,6 @@ function Hw1_1() {    const [showGradient, setShowGradient] = useState(false);
                 </div>
 
                 <div>
-
                     <img
                         src = {Sword}
                         alt = "A horror device"
@@ -72,14 +72,12 @@ function Hw1_1() {    const [showGradient, setShowGradient] = useState(false);
                     />
 
                     <h2 className="fade-in delay-2s" style={{width: '40%', marginLeft: '5vh', marginTop: '-40vh', fontSize: '20px'}}>
-                        August 14,1995
+                        1968
                     </h2>
                     <p className="fade-in delay-2s" style={{width: '40%', marginLeft: '5vh', marginTop: '5vh', fontSize: '20px', marginBottom: '30vh'}}>
                         The Sword of Damocles was the first VR device that connected to a computer. It was absolutely huge and heavy, thus it was suspended from 
                         the ceiling. The computer graphics were wireframe rooms and objects.
                     </p>
-
-                    
                 </div>
                 
                 <div>
@@ -91,9 +89,8 @@ function Hw1_1() {    const [showGradient, setShowGradient] = useState(false);
                     />
 
                     <div>
-
                         <h2 className="fade-in delay-2s" style={{width: '40%', marginLeft: '70vh', marginTop: '-50vh', fontSize: '20px'}}>
-                            August 14,1995
+                            1995
                         </h2>
 
                         <p className="fade-in delay-2s" style={{width: '40%', marginLeft: '70vh', marginTop: '5vh', fontSize: '20px', marginBottom: '30vh'}}>
@@ -101,12 +98,29 @@ function Hw1_1() {    const [showGradient, setShowGradient] = useState(false);
                             the console created the illusion of depth, but only being able to display in red and black colors. While it was revolutionary,
                             Nintendo's Virtual Boy was a commercial failure.
                         </p>
+                    </div>
+                </div>
 
+                <div>
+                    <img
+                        src = {Oculus}
+                        alt = "The first commercial success"
+                        className = "fade-in delay-2s"
+                        style = {{ width: '40%', height: 'auto', borderRadius: '10px', marginLeft: '75vh', marginTop: '2vh'}}
+                    />
+
+                    <div>
+                        <h2 className="fade-in delay-2s" style={{width: '40%', marginLeft: '10vh', marginTop: '-35vh', fontSize: '20px'}}>
+                            2012
+                        </h2>
+
+                        <p className="fade-in delay-2s" style={{width: '40%', marginLeft: '10vh', marginTop: '5vh', fontSize: '20px', marginBottom: '30vh'}}>
+                            Palmer Lucky launched a Kickstarter campaign to fund the development and product of his VR headset, the Oculus Rift. His campaign
+                            raised 2.5 million dollars, marking a clear divide between the commercial failures of the past and a new age for Virtual Reality.
+                        </p>
                     </div>
                 </div>
                 
-                <div className="contact-container fade-in delay">
-                </div>
             </div>
             <Footer />
         </>
