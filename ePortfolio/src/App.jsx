@@ -24,7 +24,7 @@ function Home() {
     <>
       {showGradient && <div className="gradient-background" />}
       <Nav />
-      <div className="content">
+      <div>
         <h1 className="fade-in">Hello!</h1>
         <p className="fade-in delay" style={{ fontSize: '24px' }}>Welcome to my website. I'm Nicholas Marolla, a student at CSU Monterey Bay.</p>
         <p className="fade-in delay-4s" style={{ marginTop: '5rem', fontSize: '16px' }}>Cat tax.</p>

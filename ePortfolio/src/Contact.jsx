@@ -16,22 +16,22 @@ function Contact() {
 
     return (
         <>
-            {showGradient && <div className="gradient-background-contact" />}
-            <Nav />
-            <div className="content">
-                <h1 className="fade-in" style={{marginTop: "12rem"}}>Contact Me</h1>
-                <div className="contact-container fade-in delay">
-                    <iframe 
-                        src="https://docs.google.com/forms/d/e/1FAIpQLScV1I6U6VQKEiM-dfnXQC4HGeLeTtm_WXetJifBXxRZzoPQZQ/viewform?usp=header"
-                        width="640" 
-                        height="800" 
-                        className="contact-form"
-                    >
-                        Loading…
-                    </iframe>
-                </div>
+        {showGradient && <div className="gradient-background-contact" />}
+        <Nav />
+        <div className="content">
+            <h1 className="fade-in" style={{marginTop: "-5rem"}}>Contact Me</h1>
+            <div className="contact-container fade-in delay">
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLScV1I6U6VQKEiM-dfnXQC4HGeLeTtm_WXetJifBXxRZzoPQZQ/viewform?usp=header"
+                    width="640" 
+                    height="800" 
+                    className="contact-form"
+                >
+                    Loading…
+                </iframe>
             </div>
-            <Footer />
+        </div>
+        <Footer />
         </>
     );
 }

@@ -38,6 +38,12 @@ html, body {
   src: url('./fonts/slkscr.ttf') format('truetype');
 }
 
+h1.fade-in {
+  position: relative;
+  margin: 0;
+  padding: 2rem 0;
+}
+
 .fade-in {
   opacity: 0;
   animation: fadeIn 2s forwards;
@@ -104,6 +110,7 @@ html, body {
   text-align: center;
   z-index: 1;
   position: relative;
+  padding-top: 20rem;
 }
 
 .content img {
