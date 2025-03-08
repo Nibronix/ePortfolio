@@ -6,7 +6,7 @@ import Nav from './Nav.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import About from './About.jsx'
 import Contact from './Contact.jsx'
-import Hw1 from './hw1.jsx'
+import Hw1 from './Hw1.jsx'
 import Hw1_1 from './Hw1_1.jsx'
 import Hw1_2 from './Hw1_2.jsx'
 import Hw1_3 from './Hw1_3.jsx'
