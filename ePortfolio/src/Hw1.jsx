@@ -62,7 +62,7 @@ function Hw1() {
                         onClick={FutureButton}
                         className="fade-in delay-2s"
                         >
-                            THE FUTURE
+                            FOVEATED RENDERING
                     </button>
 
                 </div>
