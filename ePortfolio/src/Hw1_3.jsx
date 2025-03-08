@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import './App.css'
 import Footer from './footer.jsx'
 import Nav from './Nav.jsx'
-import VR_Stuff from './assets/VR_Stuff.jpg'
-import VR_Stuff2 from './assets/VR_Stuff2.jpg'
+import FOV from './assets/FOV.jpg'
+import FOV2 from './assets/FOV2.jpg'
 
-function Hw1_2() {    const [showGradient, setShowGradient] = useState(false);
+function Hw1_3() {    const [showGradient, setShowGradient] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -20,7 +20,7 @@ function Hw1_2() {    const [showGradient, setShowGradient] = useState(false);
     };
 
     const SourceButton = () => {
-        window.location.href = 'https://www.testdevlab.com/blog/the-state-of-virtual-reality-in-2023';
+        window.location.href = 'https://www.tobii.com/blog/what-is-foveated-rendering';
     }
 
     return (
@@ -28,7 +28,7 @@ function Hw1_2() {    const [showGradient, setShowGradient] = useState(false);
             {showGradient && <div className="gradient-background-hw1" />}
             <Nav />
             <div className="content" style={{ display: 'grid'}}>
-                <h1 className="fade-in" style={{marginTop: '100vh'}}>Virtual Reality <br/>Today's World</h1>
+                <h1 className="fade-in" style={{marginTop: '100vh'}}>Virtual Reality <br/>Foveated Rendering</h1>
 
                 <div className="VR-button-container">
                     <button 
@@ -47,33 +47,36 @@ function Hw1_2() {    const [showGradient, setShowGradient] = useState(false);
                 </div>
 
                 <div>
-                    <p className="fade-in delay-1s" style={{ fontSize: '24px' }}>As of 2023, the VR technology has grew to 170 million people worldwide. 
+                    <p className="fade-in delay-1s" style={{ fontSize: '24px' }}>Foveated rendering is a modern technique for VR devices that
+                        allows high-resolution rendering for the focused area of the user's vision, while reducing the resolution of the peripheral areas.
                     </p>
 
                     <img
-                        src = {VR_Stuff}
-                        alt = "A man playing VR"
+                        src = {FOV}
+                        alt = "A VR device and an eye"
                         className = "fade-in delay-2s"
-                        style = {{ width: '50%', height: 'auto', borderRadius: '10px', marginTop: '2vh', marginBottom: '2vh'}}
+                        style = {{ width: '80%', height: 'auto', borderRadius: '10px', marginTop: '2vh', marginBottom: '2vh'}}
                     />
 
                     <p className="fade-in delay-2s" style={{ fontSize: '24px' }}>
-                        From headsets, controllers, gloves, and full-body trackers, VR technology has come a long way from its beginnings.
-                        Many industries have adopted VR for their own purposes, mainly to improve user experience and streamline work.
+                        VR applications are more realistic when rendering at high FPS and high resolution.
+                         With the help of dynamic resolutions and upscaling/downscaling technologies, foveated rendering can significantly improve performance
+                        for VR applications.
                     </p>
                 </div>
 
                 <div>
                     <img
-                        src = {VR_Stuff2}
-                        alt = "Another dude playing VR"
+                        src = {FOV2}
+                        alt = "Dynamic foveated rendering"
                         className = "fade-in delay-2s"
-                        style = {{ width: '50%', height: 'auto', borderRadius: '10px', marginLeft: '30rem', marginTop: '10vh'}}
+                        style = {{ width: '50%', height: 'auto', borderRadius: '10px', marginRight: '35rem', marginTop: '10vh'}}
                     />
 
-                    <p className="fade-in delay-2s" style={{width: '40%', marginLeft: '5vh', marginTop: '-30vh', fontSize: '20px', marginBottom: '30vh'}}>
-                        According to a PWC report, around 23 million jobs will be enhanced by VR by 2030, delivering a $1.81 trillion boost to the global economy.
-                        While VR technology is still considered fairly niche, the technology is expected grow in the next coming decades.
+                    <p className="fade-in delay-2s" style={{width: '40%', marginLeft: '80vh', marginTop: '-40vh', fontSize: '20px', marginBottom: '30vh'}}>
+                        While many VR devices have "static" foveated rendering, where the main focal point is fixed at the center of the lenses, a more 
+                        intuitive approach is dynamic foveated rendering, where the focal point is adjusted based on the user's eyes. Newer VR devices like
+                        the Apple Vision Pro support dynamic foveated rendering, supporting a crisp and clear view of the digital environment.
                     </p>
                 </div>
                 
@@ -99,4 +102,4 @@ function Hw1_2() {    const [showGradient, setShowGradient] = useState(false);
     );
 }
 
-export default Hw1_2;
+export default Hw1_3;

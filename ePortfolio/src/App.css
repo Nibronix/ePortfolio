@@ -2,6 +2,7 @@ html, body {
   height: 100%;
   margin: 0;
   background: rgba(0,12,31,1);
+  color: rgb(255, 255, 255);
 }
 
 #root {

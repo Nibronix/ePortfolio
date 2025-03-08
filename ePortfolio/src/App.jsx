@@ -9,6 +9,7 @@ import Contact from './Contact.jsx'
 import Hw1 from './hw1.jsx'
 import Hw1_1 from './Hw1_1.jsx'
 import Hw1_2 from './Hw1_2.jsx'
+import Hw1_3 from './Hw1_3.jsx'
 
 function Home() {
   const [showGradient, setShowGradient] = useState(false);
@@ -51,6 +52,7 @@ function App() {
         <Route path="/hw1" element={<Hw1 />} />
         <Route path="/hw1_1" element={<Hw1_1 />} />
         <Route path="/hw1_2" element={<Hw1_2 />} />
+        <Route path="/hw1_3" element={<Hw1_3 />} />
       </Routes>
     </Router>
   );
