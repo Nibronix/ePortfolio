@@ -74,11 +74,6 @@ function Hw1() {
                     </button>
 
                 </div>
-
-                <div className="contact-container fade-in delay">
-                    
-                
-                </div>
             </div>
             <Footer />
         </>
