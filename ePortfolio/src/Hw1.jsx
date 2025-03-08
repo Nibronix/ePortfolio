@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css'
 import Footer from './footer.jsx'
 import Nav from './Nav.jsx'
+import VR_Headset from './assets/VR_Headset.png'
 
 function Hw1() {
     const [showGradient, setShowGradient] = useState(false);
@@ -31,7 +32,14 @@ function Hw1() {
             {showGradient && <div className="gradient-background-hw1" />}
             <Nav />
             <div className="content">
-                <h1 className="fade-in" style={{marginTop: "-10rem"}}>Homework 1 <br/>Virtual Reality</h1>
+                <h1 className="fade-in" style={{marginTop: "5rem"}}>Homework 1 <br/>Virtual Reality</h1>
+
+                <img
+                        src = {VR_Headset}
+                        alt = "Wow!"
+                        className = "fade-in delay-2s"
+                        style = {{ width: '20%', height: 'auto', borderRadius: '10px', marginTop: '2vh', marginBottom: '2vh'}}
+                    />
 
                 <p className="fade-in delay-1s" style={{ fontSize: '24px' }}>Virtual Reality (VR) is a technology that emphasizes on immersing users
                     in digital environments, fundamentally changing the way users interact with content. While VR has been around for years, the last 
