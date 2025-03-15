@@ -9,6 +9,7 @@ function Nav() {
                 <li><Link to = "/contact">Contact</Link></li>
                 <li><Link to = "/hw1">Homework 1</Link></li>
                 <li><Link to = "/lab2">Lab 2</Link></li>
+                <li><Link to = "/hw2">Homework 2</Link></li>
             </ul>
         </nav>
     );

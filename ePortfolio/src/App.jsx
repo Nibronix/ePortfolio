@@ -11,6 +11,7 @@ import Hw1_1 from './Hw1_1.jsx'
 import Hw1_2 from './Hw1_2.jsx'
 import Hw1_3 from './Hw1_3.jsx'
 import Lab2 from './Lab2.jsx'
+import Hw2 from './Hw2.jsx'
 
 function Home() {
   const [showGradient, setShowGradient] = useState(false);
@@ -55,6 +56,7 @@ function App() {
         <Route path="/hw1_2" element={<Hw1_2 />} />
         <Route path="/hw1_3" element={<Hw1_3 />} />
         <Route path="/lab2" element={<Lab2 />} />
+        <Route path="/hw2" element={<Hw2 />} />
       </Routes>
     </Router>
   );
