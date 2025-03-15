@@ -81,6 +81,31 @@ export const trueFalseQuestions = [
         answer: "False",
         correctFeedback: "Correct! Although California's volcanoes are well known, Alakasa has more active volcanoes than any other US state.",
         incorrectFeedback: "Not quite. Alaska has more active volcanoes than any other US state."
+    },
+    {
+        id: 2,
+        question: "There are four states that border Mexico.",
+        answer: "True",
+        correctFeedback: "Correct! The states that border Mexico is California, Arizona, New Mexico, and Texas.",
+        incorrectFeedback: "Incorrect. There are four states that border Mexico: California, Arizona, New Mexico, and Texas."
+    }
+]
+
+export const matchingQuestions = [
+    {
+        id: 1,
+        question: "Match the cities to the state.",
+        options: [
+            { state: "California", city: "Palm Springs" },
+            { state: "Texas", city: "Plano" },
+            { state: "Florida", city: "Tallahassee" },
+            { state: "New York", city: "Albany" }
+        ],
+        correct: [
+            { state: "California", city: "Palm Springs" },
+            { state: "Texas", city: "Plano" },
+            { state: "Florida", city: "Tallahassee" },
+            { state: "New York", city: "Albany" }        ]
     }
 ]
 
