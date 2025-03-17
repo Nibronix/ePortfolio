@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import './App.css'
 import Footer from './footer.jsx'
 import Nav from './Nav.jsx'
-import './Hw2.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Hw2.css'
 import { choiceQuestions, blankQuestions, trueFalseQuestions, matchingQuestions } from './Hw2_questions.js';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Xarrow from 'react-xarrows';
+
 
 function Hw2() {
     const [showGradient, setShowGradient] = useState(false);
@@ -111,7 +112,7 @@ function Hw2() {
         // First 5 questions are multiple choice
         if (currentQuestion < 5) {
             return (
-                <div className="card p-4">
+                <div className="card-hw2 p-4">
                     <h4 className="mb-4">Question: {currentQuestion + 1}</h4>
                     <p className="mb-3">{currentQ.question}</p>
 
@@ -119,7 +120,7 @@ function Hw2() {
                         {currentQ.options.map((option, index) => (
                             <button
                                 key={index}
-                                className="btn btn-primary"
+                                className="btn-hw2"
                                 onClick={() => handleAnswer(option)}
                             >
                                 {option}
@@ -132,14 +133,14 @@ function Hw2() {
         // Questions 6-7 are fill in the blank
         } else if (currentQuestion < 7) {
             return (
-                <div className="card p-4">
+                <div className="card-hw2 p-4">
                     <h4 className="mb-4">Question: {currentQuestion + 1}</h4>
                     <p className="mb-3">{currentQ.question}</p>
 
                     <div className="input-group">
                         <input
                             type="text"
-                            className="form-control"
+                            className="form-control-hw2"
                             placeholder="🐁"
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter') {
@@ -148,7 +149,7 @@ function Hw2() {
                             }}
                         />
                         <button
-                            className="btn btn-primary"
+                            className="btn-hw2"
                             onClick={(e) => {
                                 const input = e.target.previousElementSibling;
                                 handleAnswer(input.value);
@@ -163,19 +164,19 @@ function Hw2() {
         // Questions 8-9 are true/false
         } else if (currentQuestion < 9) {
             return (
-                <div className="card p-4">
+                <div className="card-hw2 p-4">
                     <h4 className="mb-4">Question {currentQuestion + 1}</h4>
                     <p className="mb-3">{currentQ.question}</p>
 
                     <div className="d-grid gap-2">
                         <button
-                            className="btn btn-outline-success"
+                            className="btn-hw2 outline-success"
                             onClick={() => handleAnswer(true)}
                         >
                             True
                         </button>
                         <button
-                            className="btn btn-outline-danger"
+                            className="btn-hw2 outline-danger"
                             onClick={() => handleAnswer(false)}
                         >
                             False
@@ -186,7 +187,7 @@ function Hw2() {
         // Final (10th) question is a matching.
         } else {
             return (
-                <div className="card p-4">
+                <div className="card-hw2 p-4">
                     <h4 className="mb-4">Question {currentQuestion + 1}</h4>
                     <p className="mb-3">{currentQ.question}</p>
 
@@ -225,7 +226,7 @@ function Hw2() {
 
                                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
                                     <button
-                                        className="btn btn-primary"
+                                        className="btn-hw2"
                                         onClick={() => handleAnswer(connections)}
                                     >
                                         ➡️
@@ -260,18 +261,18 @@ function Hw2() {
                     {!quizStarted ? (
                         <div className="text-center">
                             <button
-                                className="btn btn-primary btn-lg"
+                                className="btn-hw2 lg"
                                 onClick={startQuiz}
                             >
                                 BEGIN
                             </button>
                         </div>
                     ) : quizEnded ? (
-                        <div className="card p-4 text-center">
+                        <div className="card-hw2 p-4 text-center">
                             <h2>Quiz Complete!</h2>
                             <p>Score: {Math.round((score / questions.length) * 100)}%</p>
                             <button
-                                className="btn btn-primary"
+                                className="btn-hw2"
                                 onClick={() => window.location.reload()}
                             >
                                 RESTART
