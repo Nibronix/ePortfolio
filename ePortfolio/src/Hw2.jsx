@@ -55,16 +55,19 @@ function Hw2() {
         const shuffledTrueFalse = [...trueFalseQuestions].sort(() => Math.random() - 0.5).slice(0, 2);
         const matchingQuestion = matchingQuestions[0];
 
-        setQuestions([
+        const initialQuestions = [
             ...shuffledChoice,
             ...shuffledBlank,
             ...shuffledTrueFalse,
             matchingQuestion
-        ]);
+        ].slice(0, 10);
+
+        setQuestions(initialQuestions);
 
         const shuffledCities = [...matchingQuestion.options]
             .map(item => item.city)
             .sort(() => Math.random() - 0.5);
+
         setShuffledCities(shuffledCities);
     }, []);
 
@@ -89,7 +92,7 @@ function Hw2() {
             isCorrect = answer === currentQ.answer;
         } else {
             isCorrect = answer.every((pair, index) =>
-                pair === currentQ.answer[index].match);
+                pair.match === currentQ.answer[index].match);
         }
 
         if (isCorrect) setScore(score + 1);
@@ -219,7 +222,15 @@ function Hw2() {
                                         </div>
                                     ))}
                                 </div>
-                            </div>
+
+                                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+                                    <button
+                                        className="btn btn-primary"
+                                        onClick={() => handleAnswer(connections)}
+                                    >
+                                        ➡️
+                                    </button>
+                                </div>
                             {connections.map((conn, index) => (
                                 <Xarrow
                                     key={index}
@@ -230,6 +241,7 @@ function Hw2() {
                                     path="straight"
                                 />
                             ))}
+                            </div>
                         </div>
                     </DndProvider>
                 </div>
@@ -241,8 +253,8 @@ function Hw2() {
         <>
             {showGradient && <div className="gradient-background-hw2" />}
             <Nav />
-            <div className="container mt-5">
-                <h1 className="fade-in" style={{marginTop: "10rem"}}>Homework 2 <br/>A US Geography Quiz</h1>
+            <div className="content mt-5">
+                <h1 className="fade-in" style={{marginTop: "-10rem"}}>Homework 2 <br/>A US Geography Quiz</h1>
 
                 <div className="fade-in delay-1s" style={{marginTop: "2rem"}}>
                     {!quizStarted ? (

@@ -101,7 +101,7 @@ export const matchingQuestions = [
             { state: "Florida", city: "Tallahassee" },
             { state: "New York", city: "Albany" }
         ],
-        correct: [
+        answer: [
             { state: "California", city: "Palm Springs" },
             { state: "Texas", city: "Plano" },
             { state: "Florida", city: "Tallahassee" },

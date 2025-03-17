@@ -84,9 +84,9 @@ function Lab2() {
             {showGradient && <div className="gradient-background-lab2" />}
             <Nav />
             <div className="content" style={{ display: 'grid'}}>
-                <h1 className="fade-in" style={{marginTop: '-30vh'}}>Lab 2<br/>Guess the Number</h1>
+                <h1 className="fade-in" style={{marginTop: '0vh'}}>Lab 2<br/>Guess the Number</h1>
 
-                <div className="Lab2-container" style={{ marginTop: '-10vh' , marginBottom: '10vh' }}>
+                <div className="Lab2-container" style={{ marginTop: '0vh' , marginBottom: '10vh' }}>
                     <p className="fade-in delay-1s">🦈 Guess a number between 1 and 99 🦭
                     </p>
 

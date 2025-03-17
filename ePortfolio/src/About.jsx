@@ -19,9 +19,9 @@ function About() {
         {showGradient && <div className="gradient-background-about" />}
         <Nav />
         <div className = "content">
-            <h1 className="fade-in" style={{marginTop: "0rem"}}>About Me</h1>
+            <h1 className="fade-in" style={{marginTop: "10rem"}}>About Me</h1>
             <div className = "about-content fade-in delay">
-                <h2 className = "fade-in delay-1s">
+                <h2 className = "fade-in delay-1s" style={{fontSize: "28px"}}>
                     My name is Nicholas Marolla. I'm a student in CSU Monterey Bay majoring in Computer Science and wannabe software developer. 
                      I enjoy all things tech related, diving in from an obsessive interest in video games.
 

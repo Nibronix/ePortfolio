@@ -14,8 +14,9 @@ html, body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
+
 
 @keyframes fadeIn {
   from {
@@ -38,6 +39,14 @@ html, body {
 @font-face {
   font-family: 'Silkscreen';
   src: url('./fonts/slkscr.ttf') format('truetype');
+}
+
+h1 {
+  position: sticky;
+  top: 0;
+  margin-bottom: 2rem;
+  text-align: center;
+  z-index: 1;
 }
 
 h1.fade-in {
@@ -127,6 +136,7 @@ h1.fade-in {
   padding-top: 10rem;
   display: 'flex';
   overflow: 'hidden';
+  justify-content: flex-start;
 }
 
 .content img {
