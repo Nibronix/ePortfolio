@@ -4,9 +4,16 @@ import Footer from './footer.jsx'
 import Nav from './Nav.jsx'
 import VR_Headset from './assets/VR_Headset.png'
 import './Hw2.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { choiceQuestions, blankQuestions, trueFalseQuestions, matchingQuestions } from './Hw2_questions.js';
 
 function Hw2() {
     const [showGradient, setShowGradient] = useState(false);
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [score, setScore] = useState(0);
+    const [quizStarted, setQuizStarted] = useState(false);
+    const [quizEnded, setQuizEnded] = useState(false);
+    const [questions, setQuestions] = useState([]);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -16,16 +23,51 @@ function Hw2() {
         return () => clearTimeout(timer);
     }, []);
 
-    const HistoryButton = () => {
-        window.location.href = '/hw1_1';
+    useEffect(() => {
+        const shuffledChoice = [...choiceQuestions].sort(() => Math.random() - 0.5).slice(0, 5);
+        const shuffledBlank = [...blankQuestions].sort(() => Math.random() - 0.5).slice(0, 2);
+        const shuffledTrueFalse = [...trueFalseQuestions].sort(() => Math.random() - 0.5).slice(0, 2);
+        const matchingQuestion = matchingQuestions[0];
+
+        setQuestions([
+            ...shuffledChoice,
+            ...shuffledBlank,
+            ...shuffledTrueFalse,
+            matchingQuestion
+        ]);
+    }, []);
+
+    const startQuiz = () => {
+        setQuizStarted(true);
     };
 
-    const TodayButton = () => {
-        window.location.href = '/hw1_2';
-    };
+    const handleAnswer = (answer) => {
+        const currentQ = questions[currentQuestion];
+        let isCorrect = false;
 
-    const FutureButton = () => {
-        window.location.href = '/hw1_3';
+        // Questions Order:
+        // 1-5: Multiple Choice
+        // 6-7: True/False
+        // 8-9: Fill in the Blank
+        // 10: Matching
+        if (currentQuestion < 5) {
+            isCorrect = answer === currentQ.answer;
+        } else if (currentQuestion < 7) {
+            isCorrrect = answer.toLowerCase() === currentQ.answer.toLowerCase();
+        } else if (currentQuestion < 9) {
+            isCorrect = answer === currentQ.answer;
+        } else {
+            isCorrect = answer.every((pair, index) =>
+                pair === currentQ.answer[index].match);
+        }
+
+        if (isCorrect) setScore(score + 1);
+
+        if (currentQuestion === questions.length - 1) {
+            setQuizEnded(true);
+        } else {
+            setCurrentQuestion(currentQuestion + 1);
+        }
     };
 
     return (
