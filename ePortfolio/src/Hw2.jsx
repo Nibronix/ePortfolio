@@ -70,45 +70,121 @@ function Hw2() {
         }
     };
 
+    const renderQuestion = () => {
+        const currentQ = questions[currentQuestion];
+
+        // First 5 questions are multiple choice
+        if (currentQuestion < 5) {
+            return (
+                <div className="card p-4">
+                    <h4 className="mb-4">Question: {currentQuestion + 1}</h4>
+                    <p className="mb-3">{currentQ.question}</p>
+
+                    <div className="d-grid gap-2">
+                        {currentQ.options.map((option, index) => (
+                            <button
+                                key={index}
+                                className="btn btn-primary"
+                                onClick={() => handleAnswer(option)}
+                            >
+                                {option}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            );
+
+        // Questions 6-7 are fill in the blank
+        } else if (currentQuestion < 7) {
+            return (
+                <div className="card p-4">
+                    <h4 className="mb-4">Question: {currentQuestion + 1}</h4>
+                    <p className="mb-3">{currentQ.question}</p>
+
+                    <div className="input-group">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="🐁"
+                            onKeyPress={(e) => {
+                                if (e.key === 'Enter') {
+                                    handleAnswer(e.target.value);
+                                }
+                            }}
+                        />
+                    </div>
+                </div>
+            );
+
+        // Questions 8-9 are true/false
+        } else if (currentQuestion < 9) {
+            return (
+                <div className="card p-4">
+                    <h4 className="mb-4">Question {currentQuestion + 1}</h4>
+                    <p className="mb-3">{currentQ.question}</p>
+
+                    <div className="d-grid gap-2">
+                        <button
+                            className="btn btn-outline-success"
+                            onClick={() => handleAnswer(true)}
+                        >
+                            True
+                        </button>
+                        <button
+                            className="btn btn-outline-danger"
+                            onClick={() => handleAnswer(false)}
+                        >
+                            False
+                        </button>
+                    </div>
+                </div>
+            );
+        // Final (10th) question is a matching.
+        } else {
+            return (
+                <div className="card p-4">
+                    <h4 className="mb-4">Question {currentQuestion + 1}</h4>
+                    <p className="mb-3">{currentQ.question}</p>
+
+                    <div className="matching-container">
+                    </div>
+                        
+                </div>
+            );
+        }
+    };
+
     return (
         <>
             {showGradient && <div className="gradient-background-hw2" />}
             <Nav />
-            <div className="content">
-                <h1 className="fade-in" style={{marginTop: "5rem"}}>Homework 2 <br/>A US Geography Quiz</h1>
+            <div className="container mt-5">
+                <h1 className="fade-in" style={{marginTop: "-10rem"}}>Homework 2 <br/>A US Geography Quiz</h1>
 
                 <div className="fade-in delay-1s" style={{marginTop: "2rem"}}>
-                    
-
-                </div>
-
-                <div className="VR-button-container">
-
-                    <button
-                        onClick={HistoryButton}
-                        className="fade-in delay-2s"
-                        style={{
-                            marginLeft: '0rem'
-                        }}>
-                            HISTORY
-                    </button>
-
-                    <button
-                        onClick={TodayButton}
-                        className="fade-in delay-2s"
-                        style={{
-                            marginCenter: 'auto'
-                        }}>
-                            TODAY'S WORLD
-                    </button>
-
-                    <button
-                        onClick={FutureButton}
-                        className="fade-in delay-2s"
-                        >
-                            FOVEATED RENDERING
-                    </button>
-
+                    {!quizStarted ? (
+                        <div className="text-center">
+                            <button
+                                className="btn btn-primary btn-lg"
+                                onClick={startQuiz}
+                            >
+                                BEGIN
+                            </button>
+                        </div>
+                    ) : quizEnded ? (
+                        <div className="card p-4 text-center">
+                            <h2>Quiz Complete!</h2>
+                            <p>Score: {Math.round((score / questions.length) * 100)}%</p>
+                            <button
+                                className="btn btn-primary"
+                                onClick={() => window.location.reload()}
+                            >
+                                RESTART
+                            </button>
+                        </div>
+                    ) : (
+                        renderQuestion()
+                    )}
                 </div>
             </div>
             <Footer />
