@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import './App.css'
 import Footer from './footer.jsx'
 import Nav from './Nav.jsx'
-import VR_Headset from './assets/VR_Headset.png'
 import './Hw2.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { choiceQuestions, blankQuestions, trueFalseQuestions, matchingQuestions } from './Hw2_questions.js';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import Xarrow from 'react-xarrows';
 
 function Hw2() {
     const [showGradient, setShowGradient] = useState(false);
@@ -14,6 +16,30 @@ function Hw2() {
     const [quizStarted, setQuizStarted] = useState(false);
     const [quizEnded, setQuizEnded] = useState(false);
     const [questions, setQuestions] = useState([]);
+    
+    // For the final matching question
+    const [connections, setConnections] = useState([]);
+    const [selectedState, setSelectedState] = useState(null);
+    const [shuffledCities, setShuffledCities] = useState([]);
+
+    const handleMatch = (state, city) => {
+        const newConnections = connections.filter(conn => conn.state !== state);
+
+        newConnections.push({ state, city });
+        setConnections(newConnections);
+        setSelectedState(null);
+
+        // Once all states are connected, check for answer
+        const currentQ = questions[currentQuestion];
+        if (newConnections.length === currentQ.options.length) {
+            const answer = newConnections.map(conn => ({
+                state: conn.state,
+                match: conn.city
+            }));
+            handleAnswer(answer);
+        }
+    }
+    
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -35,6 +61,11 @@ function Hw2() {
             ...shuffledTrueFalse,
             matchingQuestion
         ]);
+
+        const shuffledCities = [...matchingQuestion.options]
+            .map(item => item.city)
+            .sort(() => Math.random() - 0.5);
+        setShuffledCities(shuffledCities);
     }, []);
 
     const startQuiz = () => {
@@ -53,7 +84,7 @@ function Hw2() {
         if (currentQuestion < 5) {
             isCorrect = answer === currentQ.answer;
         } else if (currentQuestion < 7) {
-            isCorrrect = answer.toLowerCase() === currentQ.answer.toLowerCase();
+            isCorrect = answer.toLowerCase() === currentQ.answer.toLowerCase();
         } else if (currentQuestion < 9) {
             isCorrect = answer === currentQ.answer;
         } else {
@@ -67,6 +98,7 @@ function Hw2() {
             setQuizEnded(true);
         } else {
             setCurrentQuestion(currentQuestion + 1);
+            setConnections([]);
         }
     };
 
@@ -106,12 +138,21 @@ function Hw2() {
                             type="text"
                             className="form-control"
                             placeholder="🐁"
-                            onKeyPress={(e) => {
+                            onKeyDown={(e) => {
                                 if (e.key === 'Enter') {
                                     handleAnswer(e.target.value);
                                 }
                             }}
                         />
+                        <button
+                            className="btn btn-primary"
+                            onClick={(e) => {
+                                const input = e.target.previousElementSibling;
+                                handleAnswer(input.value);
+                            }}
+                        >
+                            ➡️
+                        </button>
                     </div>
                 </div>
             );
@@ -146,9 +187,51 @@ function Hw2() {
                     <h4 className="mb-4">Question {currentQuestion + 1}</h4>
                     <p className="mb-3">{currentQ.question}</p>
 
-                    <div className="matching-container">
-                    </div>
-                        
+                    <DndProvider backend={HTML5Backend}>
+                        <div className="matching-container">
+                            <div className="matching-columns">
+                                <div className="states-column">
+                                    {currentQ.options.map((item, index) => (
+                                        <div
+                                            id={`state-${item.state}`}
+                                            key={`state-${index}`}
+                                            className={`state-item ${selectedState === item.state ? 'selected' : ''}`}
+                                            onClick={() => setSelectedState(item.state)}
+                                        >
+                                            {item.state}
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="cities-column">
+                                    {shuffledCities.map((city, index) => (
+                                        <div
+                                            id={`city-${city}`}
+                                            key={`city-${index}`}
+                                            className="matching-item city-item"
+                                            onClick={() => {
+                                                if (selectedState) {
+                                                    handleMatch(selectedState, city);
+                                                }
+                                            }}
+                                        >
+                                            {city}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            {connections.map((conn, index) => (
+                                <Xarrow
+                                    key={index}
+                                    start={`state-${conn.state}`}
+                                    end={`city-${conn.city}`}
+                                    color="orange"
+                                    strokeWidth={4}
+                                    path="straight"
+                                />
+                            ))}
+                        </div>
+                    </DndProvider>
                 </div>
             );
         }
@@ -159,7 +242,7 @@ function Hw2() {
             {showGradient && <div className="gradient-background-hw2" />}
             <Nav />
             <div className="container mt-5">
-                <h1 className="fade-in" style={{marginTop: "-10rem"}}>Homework 2 <br/>A US Geography Quiz</h1>
+                <h1 className="fade-in" style={{marginTop: "10rem"}}>Homework 2 <br/>A US Geography Quiz</h1>
 
                 <div className="fade-in delay-1s" style={{marginTop: "2rem"}}>
                     {!quizStarted ? (
