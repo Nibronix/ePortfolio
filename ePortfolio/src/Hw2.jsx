@@ -17,6 +17,8 @@ function Hw2() {
     const [quizStarted, setQuizStarted] = useState(false);
     const [quizEnded, setQuizEnded] = useState(false);
     const [questions, setQuestions] = useState([]);
+    const [feedback, setFeedback] = useState('');
+    const [showNextButton, setShowNextButton] = useState(false);
     
     // For the final matching question
     const [connections, setConnections] = useState([]);
@@ -96,7 +98,12 @@ function Hw2() {
                 pair.match === currentQ.answer[index].match);
         }
 
-        if (isCorrect) setScore(score + 1);
+        if (isCorrect) {
+            setScore(score + 1);
+            setFeedback(currentQ.feedback.correct);
+        }
+
+        //TODO: Add incorrect feedback.
 
         if (currentQuestion === questions.length - 1) {
             setQuizEnded(true);

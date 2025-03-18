@@ -3,61 +3,101 @@ export const choiceQuestions = [
         id: 1,
         question: "Which state features a town called 'Boring'?",
         options: ["California", "Oregon", "Texas", "Washington"],
-        correct: "Oregon"
+        correct: "Oregon",
+        feedback: {
+            correct: "Correct! There is a town called 'Boring' in Oregon.",
+            incorrect: "Incorrect. The correct answer is Oregon, where there's a town called 'Boring'."
+        }
     },
     {
         id: 2,
         question: "Which state is known as the 'Sunshine State'?",
         options: ["California", "Florida", "Texas", "Arizona"],
-        correct: "Florida"
+        correct: "Florida",
+        feedback: {
+            correct: "Correct! Florida is known as the 'Sunshine State'.",
+            incorrect: "Incorrect. Florida is the 'Sunshine State'."
+        }
     },
     {
         id: 3,
         question: "What is the largest state in the US by area?",
         options: ["Texas", "California", "Alaska", "Canada"],
-        correct: "Alaska"
+        correct: "Alaska",
+        feedback: {
+            correct: "Correct! Alaska is the largest state in the US by area.",
+            incorrect: "Incorrect. The correct answer is Alaska."
+        }
     },
     {
         id: 4,
         question: "Which state is known as the 'Empire State'?",
         options: ["California", "Texas", "New York", "Virginia"],
-        correct: "New York"
+        correct: "New York",
+        feedback: {
+            correct: "Correct! New York is known as the 'Empire State'.",
+            incorrect: "Incorrect. The 'Empire State' is New York."
+        }
     },
     {
         id: 5,
         question: "What is the capital of Texas?",
         options: ["Houston", "Dallas", "Austin", "San Antonio"],
-        correct: "Austin"
+        correct: "Austin",
+        feedback: {
+            correct: "Correct! The capital of Texas is Austin.",
+            incorrect: "Incorrect. The correct answer is Austin."
+        }
     },
     {
         id: 6,
         question: "Which state is known for its potatoes?",
         options: ["Iowa", "Idaho", "Ohio", "Nebraska"],
-        correct: "Idaho"
+        correct: "Idaho",
+        feedback: {
+            correct: "Correct! Idaho is famous for its potatoes.",
+            incorrect: "Incorrect. The state known for its potatoes is Idaho."
+        }
     },
     {
         id: 7,
         question: "What is the smallest state in the US by area?",
         options: ["Delaware", "Rhode Island", "Connecticut", "New Jersey"],
-        correct: "Rhode Island"
+        correct: "Rhode Island",
+        feedback: {
+            correct: "Correct! Rhode Island is the smallest state in the US by area.",
+            incorrect: "Incorrect. The smallest state by area is Rhode Island."
+        }
     },
     {
         id: 8,
         question: "Which state is home to the Grand Canyon?",
         options: ["Nevada", "Utah", "Arizona", "Colorado"],
-        correct: "Arizona"
+        correct: "Arizona",
+        feedback: {
+            correct: "Correct! The Grand Canyon is located in Arizona.",
+            incorrect: "Incorrect. Arizona is home to the Grand Canyon."
+        }
     },
     {
         id: 9,
         question: "Which state proudly hosts the world's largest ball of twine?",
         options: ["Kansas", "Oklahoma", "Nebraska", "New York"],
-        correct: "Kansas"
+        correct: "Kansas",
+        feedback: {
+            correct: "Correct! Kansas is home to the world's largest ball of twine.",
+            incorrect: "Incorrect. The world's largest ball of twine is in Kansas."
+        }
     },
     {
         id: 10,
         question: "Which state is known as the 'Peach State'?",
         options: ["South Carolina", "Georgia", "Alabama", "Mississippi"],
-        correct: "Georgia"
+        correct: "Georgia",
+        feedback: {
+            correct: "Correct! Georgia is known as the 'Peach State'.",
+            incorrect: "Incorrect. Georgia is the 'Peach State'."
+        }
     }
 ]
 
@@ -65,12 +105,20 @@ export const blankQuestions = [
     {
         id: 1,
         question: "The state with the most national parks is _________.",
-        answer: "California"
+        answer: "California",
+        feedback: {
+            correct: "Correct! California has the most national parks in the US.",
+            incorrect: "Incorrect. The correct answer is California, with the most national parks."
+        }
     },
     {
         id: 2,
         question: "Which state is known as the 'Land of 10,000 Lakes'?",
-        answer: "Minnesota"
+        answer: "Minnesota",
+        feedback: {
+            correct: "Correct! Minnesota is known as the 'Land of 10,000 Lakes'.",
+            incorrect: "Incorrect. The correct answer is Minnesota."
+        }
     }
 ]
 
@@ -79,15 +127,15 @@ export const trueFalseQuestions = [
         id: 1,
         question: "California is home to more active volcanoes than any other US state.",
         answer: "False",
-        correctFeedback: "Correct! Although California's volcanoes are well known, Alakasa has more active volcanoes than any other US state.",
-        incorrectFeedback: "Not quite. Alaska has more active volcanoes than any other US state."
+        correct: "Correct! Although California's volcanoes are well known, Alaska has more active volcanoes than any other US state.",
+        incorrect: "Not quite. Alaska has more active volcanoes than any other US state."
     },
     {
         id: 2,
         question: "There are four states that border Mexico.",
         answer: "True",
-        correctFeedback: "Correct! The states that border Mexico is California, Arizona, New Mexico, and Texas.",
-        incorrectFeedback: "Incorrect. There are four states that border Mexico: California, Arizona, New Mexico, and Texas."
+        correct: "Correct! The states that border Mexico are California, Arizona, New Mexico, and Texas.",
+        incorrect: "Incorrect. There are four states that border Mexico: California, Arizona, New Mexico, and Texas."
     }
 ]
 
@@ -105,7 +153,11 @@ export const matchingQuestions = [
             { state: "California", city: "Palm Springs" },
             { state: "Texas", city: "Plano" },
             { state: "Florida", city: "Tallahassee" },
-            { state: "New York", city: "Albany" }        ]
+            { state: "New York", city: "Albany" }
+        ],
+        feedback: {
+            correct: "Correct! You've matched all cities with their respective states.",
+            incorrect: "Incorrect match. :("
+        }
     }
 ]
-
