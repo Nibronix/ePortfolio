@@ -259,24 +259,26 @@ function Hw2() {
 
                 <div className="fade-in delay-1s" style={{marginTop: "2rem"}}>
                     {!quizStarted ? (
-                        <div className="text-center">
+                        <div className="btn-wrap">
                             <button
-                                className="btn-hw2 lg"
+                                className="btn-hw2"
                                 onClick={startQuiz}
                             >
                                 BEGIN
                             </button>
                         </div>
                     ) : quizEnded ? (
-                        <div className="card-hw2 p-4 text-center">
+                        <div className="card-hw2 p-4">
                             <h2>Quiz Complete!</h2>
                             <p>Score: {Math.round((score / questions.length) * 100)}%</p>
-                            <button
-                                className="btn-hw2"
-                                onClick={() => window.location.reload()}
-                            >
-                                RESTART
-                            </button>
+                            <div className="btn-wrap">
+                                <button
+                                    className="btn-hw2"
+                                    onClick={() => window.location.reload()}
+                                >
+                                    RESTART
+                                </button>
+                            </div>
                         </div>
                     ) : (
                         renderQuestion()
