@@ -167,3 +167,28 @@ export const matchingQuestions = [
         }
     }
 ]
+
+export const checkQuestions = [
+    {
+        id: 1,
+        question: "Which of the following states are part of the New England region?",
+        options: ["Maine", "Vermont", "New York", "Massachusetts"],
+        answer: ["Maine", "Vermont", "Massachusetts"],
+        feedback: {
+            correct: "Correct! Maine, Vermont, and Massachusetts are part of the New England region.",
+            incorrect: "Incorrect. The correct answers are Maine, Vermont, and Massachusetts."
+        }
+    },
+    {
+        id: 2,
+        question: "Which of the following states have a coastline on the Gulf of Mexico?",
+        options: ["Texas", "Florida", "Georgia", "Alabama"],
+        answer: ["Texas", "Florida", "Alabama"],
+        feedback: {
+            correct: "Correct! Texas, Florida, and Alabama have coastlines on the Gulf of Mexico.",
+            incorrect: "Incorrect. The correct answers are Texas, Florida, and Alabama."
+        }
+    }
+]
+
+

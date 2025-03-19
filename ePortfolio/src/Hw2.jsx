@@ -4,7 +4,7 @@ import Footer from './footer.jsx'
 import Nav from './Nav.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Hw2.css'
-import { choiceQuestions, blankQuestions, trueFalseQuestions, matchingQuestions } from './Hw2_questions.js';
+import { choiceQuestions, blankQuestions, trueFalseQuestions, matchingQuestions, checkQuestions } from './Hw2_questions.js';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Xarrow from 'react-xarrows';
@@ -25,6 +25,14 @@ function Hw2() {
     const [inputValue, setInputValue] = useState('');
     const [image, setImage] = useState(null);
     const finalScore = Math.round((score / questions.length) * 100);
+    const [shuffledOptions, setShuffledOptions] = useState([]);
+    const [selectedOptions, setSelectedOptions] = useState([]);
+
+    useEffect(() => {
+        if (currentQuestion < 5 && questions[currentQuestion]) {
+            setShuffledOptions([...questions[currentQuestion].options].sort(() => Math.random() - 0.5))
+        }
+    }, [currentQuestion, questions]);
 
     // Quiz attempts
     const [totalAttempts, setTotalAttempts] = useState(() => {
@@ -92,13 +100,15 @@ function Hw2() {
     useEffect(() => {
         const shuffledChoice = [...choiceQuestions].sort(() => Math.random() - 0.5).slice(0, 5);
         const shuffledBlank = [...blankQuestions].sort(() => Math.random() - 0.5).slice(0, 2);
-        const shuffledTrueFalse = [...trueFalseQuestions].sort(() => Math.random() - 0.5).slice(0, 2);
+        const shuffledTrueFalse = [...trueFalseQuestions].sort(() => Math.random() - 0.5).slice(0, 1);
+        const shuffledCheck = [...checkQuestions].sort(() => Math.random() - 0.5).slice(0, 1);
         const matchingQuestion = matchingQuestions[0];
 
         const initialQuestions = [
             ...shuffledChoice,
             ...shuffledBlank,
             ...shuffledTrueFalse,
+            ...shuffledCheck,
             matchingQuestion
         ].slice(0, 10);
 
@@ -121,15 +131,20 @@ function Hw2() {
 
         // Questions Order:
         // 1-5: Multiple Choice
-        // 6-7: True/False
-        // 8-9: Fill in the Blank
+        // 6-7: Fill in the Blank
+        // 8: True/False
+        // 9: Check
         // 10: Matching
         if (currentQuestion < 5) {
             isCorrect = answer === currentQ.answer;
         } else if (currentQuestion < 7) {
             isCorrect = answer.toLowerCase() === currentQ.answer.toLowerCase();
-        } else if (currentQuestion < 9) {
+        } else if (currentQuestion < 8) {
             isCorrect = answer === currentQ.answer;
+        } else if (currentQuestion < 9) {
+            isCorrect = Array.isArray(answer) &&
+            answer.length === currentQ.answer.length && 
+            answer.every((val, index) => val === currentQ.answer[index]);
         } else {
             isCorrect = answer.every((pair, index) =>
                 pair.state === currentQ.answer[index].state &&
@@ -154,6 +169,9 @@ function Hw2() {
         if (currentQuestion === questions.length - 1) {
             setQuizEnded(true);
         } else {
+            const radioButtons = document.getElementsByName(`question-${currentQuestion}`);
+            radioButtons.forEach(radio => radio.checked = false);
+
             setCurrentQuestion(currentQuestion + 1);
             setFeedback('');
             setConnections([]);
@@ -168,7 +186,7 @@ function Hw2() {
 
         // First 5 questions are multiple choice
         if (currentQuestion < 5) {
-            const shuffledOptions = [...currentQ.options].sort(() => Math.random() - 0.5)
+            const currentQ = questions[currentQuestion];
 
             return (
                 <div className="card-hw2 p-4">
@@ -177,15 +195,19 @@ function Hw2() {
 
                     <div className="d-grid gap-2">
                         {shuffledOptions.map((option, index) => (
-                            <button
-                                key={index}
-                                className={`btn-hw2 ${
-                                    showNextButton && option === currentQ.correct ? 'btn-hw2-outline-success' : '' }`}
-                                onClick={() => handleAnswer(option)}
+                            <label 
+                            key={index}
+                            className={`btn-hw2 ${showNextButton ? 'disabled' : ''}`}
+                        >
+                            <input
+                                type="radio"
+                                name={`question-${currentQuestion}`}
+                                value={option}
+                                onChange={() => handleAnswer(option)}
                                 disabled={showNextButton}
-                            >
-                                {option}
-                            </button>
+                            />
+                            {' '}{option}
+                        </label>
                         ))}
                     </div>
                     {feedback && <p>{feedback}</p>}
@@ -217,7 +239,7 @@ function Hw2() {
                         />
                         <div className="btn-wrap">
                             <button
-                                className="btn-hw2"
+                                className={`btn-hw2 ${showNextButton ? 'disabled' : ''}`}
                                 onClick={(e) => {
                                     const input = e.target.closest('.input-group').querySelector('input');
                                     handleAnswer(input.value);
@@ -233,30 +255,34 @@ function Hw2() {
                 </div>
             );
 
-        // Questions 8-9 are true/false
-        } else if (currentQuestion < 9) {
+        // Questions 8 is true/false
+        } else if (currentQuestion < 8) {
             return (
                 <div className="card-hw2 p-4">
                     <h4 className="mb-4">Question {currentQuestion + 1}</h4>
                     <p className="mb-3">{currentQ.question}</p>
 
                     <div className="d-grid gap-2">
-                        <button
-                            className={`btn-hw2 ${
-                                showNextButton && currentQ.answer === true ? 'btn-hw2-outline-success' : ''}`}
-                            onClick={() => handleAnswer(true)}
+                    <label className={`btn-hw2 ${showNextButton ? 'disabled' : ''}`}>
+                        <input 
+                            type="radio"
+                            name={`question-${currentQuestion}`}
+                            value="true"
+                            onChange={() => handleAnswer(true)}
                             disabled={showNextButton}
-                        >
-                            True
-                        </button>
-                        <button
-                            className={`btn-hw2 ${
-                                showNextButton && currentQ.answer === false ? 'btn-hw2-outline-success' : ''}`}
-                            onClick={() => handleAnswer(false)}
+                        />
+                        {' '}True
+                    </label>
+                    <label className={`btn-hw2 ${showNextButton ? 'disabled' : ''}`}>
+                        <input 
+                            type="radio"
+                            name={`question-${currentQuestion}`}
+                            value="false"
+                            onChange={() => handleAnswer(false)}
                             disabled={showNextButton}
-                        >
-                            False
-                        </button>
+                        />
+                        {' '}False
+                    </label>
                     </div>
                     {feedback && <p>{feedback}</p>}
                     <NextButton
@@ -265,6 +291,43 @@ function Hw2() {
                     >
                         {currentQuestion === questions.length - 1 ? "Finish" : "Next Question"}
                     </NextButton>
+                </div>
+            );
+        // Question 9 is a checkbox question
+        } else if (currentQuestion < 9) {
+            return (
+                <div className="card-hw2 p-4">
+                    <h4 className="mb-4">Question {currentQuestion + 1}</h4>
+                    <p className="mb-3">{currentQ.question}</p>
+    
+                    <div className="d-grid gap-2">
+                        {currentQ.options.map((option, index) => (
+                            <label key={index} className={`btn-hw2 ${showNextButton ? 'disabled' : ''}`}>
+                                <input
+                                    type="checkbox"
+                                    name={`question-${currentQuestion}`}
+                                    value={option}
+                                    onChange={(e) => {
+                                        const selected = e.target.checked;
+                                        setSelectedOptions(prev => selected ? [...prev, option] : prev.filter(opt => opt !== option));
+                                    }}
+                                    disabled={showNextButton}
+                                />
+                                {' '}{option}
+                            </label>
+                        ))}
+                        <div className="btn-wrap">
+                            <button
+                                className={`btn-hw2 ${showNextButton ? 'disabled' : ''}`}
+                                onClick={() => handleAnswer(selectedOptions)}
+                                disabled={showNextButton}
+                            >
+                                ➡️
+                            </button>
+                        </div>
+                    </div>
+                    {feedback && <p>{feedback}</p>}
+                    <NextButton showNextButton={showNextButton} onClick={nextQuestion} />
                 </div>
             );
         // Final (10th) question is a matching.
@@ -282,8 +345,8 @@ function Hw2() {
                                         <div
                                             id={`state-${item.state}`}
                                             key={`state-${index}`}
-                                            className={`state-item ${selectedState === item.state ? 'selected' : ''}`}
-                                            onClick={() => setSelectedState(item.state)}
+                                            className={`state-item ${selectedState === item.state ? 'selected' : ''} ${showNextButton ? 'disabled' : ''}`}
+                                            onClick={() => !showNextButton && setSelectedState(item.state)}
                                         >
                                             {item.state}
                                         </div>
@@ -295,9 +358,9 @@ function Hw2() {
                                         <div
                                             id={`city-${city}`}
                                             key={`city-${index}`}
-                                            className="matching-item city-item"
+                                            className={`matching-item city-item ${showNextButton ? 'disabled' : ''}`}
                                             onClick={() => {
-                                                if (selectedState) {
+                                                if (selectedState && !showNextButton) {
                                                     handleMatch(selectedState, city);
                                                 }
                                             }}

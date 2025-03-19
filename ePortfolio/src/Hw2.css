@@ -13,6 +13,11 @@
 .card-hw2 {
   background-color: rgba(255, 98, 0, 0.124);
   border-radius: 50px;
+  position: block;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  max-width: 70vh;
 }
 
 .input-group {
@@ -68,6 +73,20 @@
   justify-content: center;
 }
 
+.btn-hw2 input[type="radio"]:not(:disabled) {
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: 4px solid rgb(255, 255, 255);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  background-color: rgba(106, 72, 0, 0);
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 4px;
+}
+
 .btn-wrap {
   text-align: center;
   display: flex;
@@ -83,34 +102,15 @@
   transform: scale(1.05);
 }
 
-.btn-hw2:disabled {
+.btn-hw2.disabled input[type="radio"] {
+  cursor: not-allowed;
+}
+
+.btn-hw2.disabled {
   opacity: 0.6;
   cursor: not-allowed;
   border: 2px solid white;
-}
-
-.btn-hw2-outline-success {
-  background-color: transparent;
-  color: rgb(0, 118, 22);
-  border: 2px solid rgba(0,12,31,1);
-}
-
-.btn-hw2-outline-success:hover {
-  background-color: rgba(40, 167, 69, 1);
-  color: white;
-  transform: scale(1.05);
-}
-
-.btn-hw2-outline-danger {
-  background-color: transparent;
-  color: rgba(220, 53, 69, 1);
-  border: 2px solid rgba(220, 53, 69, 1);
-}
-
-.btn-hw2-outline-danger:hover {
-  background-color: rgba(220, 53, 69, 1);
-  color: white;
-  transform: scale(1.05);
+  pointer-events: none;
 }
 
 .matching-container {
@@ -134,19 +134,28 @@
 
 .matching-item, .state-item {
   padding: 10px 20px;
-  border: 2px solid orange;
+  border: 2px solid white;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
-.matching-item:hover, .state-item:hover {
-  background: #00eba1;
+.matching-item.disabled, .state-item.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  border: 2px solid white;
+  pointer-events: none;
+}
+
+.matching-item:not(:disabled):hover, .state-item:not(:disabled):hover {
+  background: #00ffae9c;
+  border: 2px solid white;
 }
 
 .matching-item.selected, .state-item.selected {
-  background: #52b704;
   color: white;
+  transform: scale(1.05);
+  background: #00ffae9c;
 }
 
 .state-item {
@@ -160,8 +169,10 @@
 }
 
 .image-hw2 {
-  width: 30%;
+  width: 15%;
   height: auto;
-  margin-left: auto;
-  display: block;
+  position: absolute;
+  top: 55%;
+  left: 70%;
+  transform: translateY(-50%);
 }
