@@ -35,7 +35,7 @@ h1 {
     height: 40px;
     transition: all 0.3s ease;
     text-align: left;
-    margin-bottom: 1rem;
+    margin-bottom: 5px;
   }
 
   .form-control-signup option {

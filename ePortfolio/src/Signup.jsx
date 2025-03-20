@@ -74,7 +74,7 @@ function SignUp() {
                     setCity('');
                     setLongitude('');
                     setLatitude('');
-                    setZipError('Zip code not found');
+                    setZipError('Zip code not found. 🐽');
                     setShowLatLong(false);
                 });
         } else {
@@ -165,7 +165,7 @@ function SignUp() {
                             value={zipCode}
                             onChange={handleZipCodeChange}
                         />
-                        {zipError && <small className="text-danger">{zipError}</small>}
+                        {zipError && <p className="text-danger">{zipError}</p>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="city">City</label>
