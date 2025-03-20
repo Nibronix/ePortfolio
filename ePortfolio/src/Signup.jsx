@@ -4,6 +4,7 @@ import Footer from './footer.jsx';
 import Nav from './Nav.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Signup.css'
+import './Hw2.css'
 
 function SignUp() {
     const [showGradient, setShowGradient] = useState(false);
@@ -151,7 +152,7 @@ function SignUp() {
             <div className="content">
                 <h1 className="fade-in" style={{ marginTop: "5vh"}}>Sign Up</h1>
                 <form className="fade-in delay-1s" onSubmit={handleSubmit}>
-                    <div className='latLong' style={{ marginTop: '1rem', display: showLatLong ? 'block' : 'none'}}>
+                    <div className='latLong' style={{ display: showLatLong ? 'block' : 'none'}}>
                         <p>Longitude: {longitude}</p>
                         <p>Latitude: {latitude}</p>
                     </div>
@@ -159,7 +160,7 @@ function SignUp() {
                         <label htmlFor="zipCode" style={{ marginTop: "2vh"}}>Zip Code</label>
                         <input
                             type="text"
-                            className="form-control"
+                            className="form-control-signup"
                             id="zipCode"
                             value={zipCode}
                             onChange={handleZipCodeChange}
@@ -170,15 +171,15 @@ function SignUp() {
                         <label htmlFor="city">City</label>
                         <input
                             type="text"
-                            className="form-control"
+                            className="form-control-signup"
                             id="city"
                             value={city}
-                            disabled
+                            onChange={(e) => setCity(e.target.value)}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="state">State</label>
-                        <select className="form-control" id="state" onChange={handleStateChange}>
+                        <select className="form-control-signup" id="state" onChange={handleStateChange}>
                             <option value="">Select a state</option>
                             {states.map((state, index) => (
                                 <option key={index} value={state.code}>
@@ -189,7 +190,7 @@ function SignUp() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="county">County</label>
-                        <select className="form-control" id="county">
+                        <select className="form-control-signup" id="county">
                             <option value="">Select a county</option>
                             {counties.map((county, index) => (
                                 <option key={index} value={county.code}>
@@ -202,7 +203,7 @@ function SignUp() {
                         <label htmlFor="username">Username</label>
                         <input
                             type="text"
-                            className="form-control"
+                            className="form-control-signup"
                             id="username"
                             value={username}
                             onChange={handleUsernameChange}
@@ -218,7 +219,7 @@ function SignUp() {
                         <label htmlFor="password">Password</label>
                         <input
                             type="password"
-                            className="form-control"
+                            className="form-control-signup"
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -232,14 +233,18 @@ function SignUp() {
                         <label htmlFor="retypePassword">Retype Password</label>
                         <input
                             type="password"
-                            className="form-control"
+                            className="form-control-signup"
                             id="retypePassword"
                             value={retypePassword}
                             onChange={(e) => setRetypePassword(e.target.value)}
                         />
                     </div>
                     {passwordError && <small className="text-danger">{passwordError}</small>}
-                    <button type="submit" className="btn btn-primary mt-3">
+                    <button 
+                        type="submit" 
+                        className="btn-hw2 btn-primary mt-3"
+                        onCLick={() => window.location.href ='/welcome'}
+                    >
                         Submit
                     </button>
                 </form>

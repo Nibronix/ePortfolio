@@ -16,7 +16,7 @@ const Footer = () => {
                 />
                 <p style = {{
                     color: "#baf5ff"
-                }}>© 2025 California State University, Monterey Bay. Website is made using React, Node.JS, Vite, and AWS.</p>
+                }}>© 2025 California State University, Monterey Bay. Website is made using React, Node.JS, and AWS.</p>
             </div>
         </footer>
     );
