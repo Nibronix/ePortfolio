@@ -19,6 +19,7 @@ function SignUp() {
     const [passwordError, setPasswordError] = useState('');
     const [showPasswordSuggestion, setShowPasswordSuggestion] = useState(false);
     const [passwordSuggestion, setPasswordSuggestion] = useState('');
+    const [selectedState, setSelectedState] = useState('');
 
     const CENSUS_API = import.meta.env.VITE_REACT_APP_CENSUS_API;
 
@@ -27,10 +28,11 @@ function SignUp() {
             .then(response => response.json())
             .then(data => {
                 const stateNames = data.slice(1).map(item => ({ name: item[0], code: item[1] }));
+                stateNames.sort((a, b) => a.name.localeCompare(b.name));
                 setStates(stateNames);
             })
             .catch(error => console.error('Error fetching states:', error));
-    }, []);
+    }, [CENSUS_API]);
 
     const handleZipCodeChange = (e) => {
         const zip = e.target.value;
@@ -64,15 +66,19 @@ function SignUp() {
         }
     };
 
-    /* TODO: Figure county API using Census Data API
     const handleStateChange = (e) => {
-        const state = e.target.value;
-        fetch(`PLACEHOLDER`)
+        const stateCode = e.target.value;
+        setSelectedState(stateCode);
+
+        fetch(`https://api.census.gov/data/2019/acs/acs1?get=NAME&for=county:*&in=state:${stateCode}&key=${CENSUS_API}`)
             .then(response => response.json())
-            .then(data => setCounties(data))
+            .then(data => {
+                const countyNames = data.slice(1).map(item => ({ name: item[0], code: item[2] }));
+                countyNames.sort((a, b) => a.name.localeCompare(b.name));
+                setCounties(countyNames);
+            })
             .catch(error => console.error('Error fetching counties:', error));
     };
-    */
 
     const handleUsernameChange = (e) => {
         const user = e.target.value;
@@ -169,7 +175,7 @@ function SignUp() {
                         <select className="form-control" id="state" onChange={handleStateChange}>
                             <option value="">Select a state</option>
                             {states.map((state, index) => (
-                                <option key={index} value={state.name}>
+                                <option key={index} value={state.code}>
                                     {state.name}
                                 </option>
                             ))}
@@ -180,8 +186,8 @@ function SignUp() {
                         <select className="form-control" id="county">
                             <option value="">Select a county</option>
                             {counties.map((county, index) => (
-                                <option key={index} value={county}>
-                                    {county}
+                                <option key={index} value={county.code}>
+                                    {county.name}
                                 </option>
                             ))}
                         </select>
