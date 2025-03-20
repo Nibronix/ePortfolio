@@ -157,7 +157,7 @@ function SignUp() {
                         <p>Latitude: {latitude}</p>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="zipCode" style={{ marginTop: "2vh"}}>Zip Code</label>
+                        <label htmlFor="zipCode">Zip Code</label>
                         <input
                             type="text"
                             className="form-control-signup"
