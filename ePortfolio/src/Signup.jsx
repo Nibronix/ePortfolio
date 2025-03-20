@@ -39,6 +39,7 @@ function SignUp() {
         setZipCode(zip);
 
         if (zip.length === 5) {
+            //TODO: Make latLong visible
             fetch(`https://api.zippopotam.us/us/${zip}`)
                 .then(response => {
                     if (!response.ok) {
@@ -52,7 +53,7 @@ function SignUp() {
                     setLatitude(data.places[0].latitude);
                     setZipError('');
                 })
-                .catch(error => {
+                .catch(() => {
                     setCity('');
                     setLongitude('');
                     setLatitude('');
@@ -129,6 +130,10 @@ function SignUp() {
             <div className="container mt-5">
                 <h1 className="text-center" style={{ marginTop: "10vh"}}>Sign Up</h1>
                 <form onSubmit={handleSubmit}>
+                    <div className='latLong' style={{ marginTop: '2rem', display: 'none'}}>
+                        <p>Longitude: {longitude}</p>
+                        <p>Latitude: {latitude}</p>
+                    </div>
                     <div className="form-group">
                         <label htmlFor="zipCode" style={{ marginTop: "2vh"}}>Zip Code</label>
                         <input
@@ -147,27 +152,7 @@ function SignUp() {
                             className="form-control"
                             id="city"
                             value={city}
-                            readOnly
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="longitude">Longitude</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="longitude"
-                            value={longitude}
-                            readOnly
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="latitude">Latitude</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="latitude"
-                            value={latitude}
-                            readOnly
+                            disabled
                         />
                     </div>
                     <div className="form-group">
@@ -219,7 +204,7 @@ function SignUp() {
                             onFocus={handlePasswordFocus}
                         />
                         {showPasswordSuggestion && (
-                            <p>{passwordSuggestion}</p>
+                            <p>Suggested Password: {passwordSuggestion}</p>
                         )}
                     </div>
                     <div className="form-group">
