@@ -5,7 +5,6 @@ import Nav from './Nav.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Hw2.css'
 import { choiceQuestions, blankQuestions, trueFalseQuestions, matchingQuestions, checkQuestions } from './Hw2_questions.js';
-import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Xarrow from 'react-xarrows';
 import React from 'react';
@@ -336,8 +335,6 @@ function Hw2() {
                 <div className="card-hw2 p-4">
                     <h4 className="mb-4">Question {currentQuestion + 1}</h4>
                     <p className="mb-3">{currentQ.question}</p>
-
-                    <DndProvider backend={HTML5Backend}>
                         <div className="matching-container">
                             <div className="matching-columns">
                                 <div className="states-column">
@@ -388,7 +385,6 @@ function Hw2() {
                                 Finish
                             </NextButton>
                         </div>
-                    </DndProvider>
                 </div>
             );
         }
