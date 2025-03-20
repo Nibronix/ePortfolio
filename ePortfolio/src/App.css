@@ -42,7 +42,7 @@ html, body {
 }
 
 h1 {
-  position: sticky;
+  position: static;
   top: 0;
   margin-bottom: 2rem;
   text-align: center;
@@ -50,7 +50,7 @@ h1 {
 }
 
 h1.fade-in {
-  position: sticky;
+  position: static;
   justify-content: center;
   align-items: center;
   margin: 0;

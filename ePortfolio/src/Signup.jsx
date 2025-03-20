@@ -3,8 +3,11 @@ import './App.css';
 import Footer from './footer.jsx';
 import Nav from './Nav.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Signup.css'
 
 function SignUp() {
+    const [showGradient, setShowGradient] = useState(false);
+
     const [states, setStates] = useState([]);
     const [counties, setCounties] = useState([]);
     const [zipCode, setZipCode] = useState('');
@@ -20,6 +23,15 @@ function SignUp() {
     const [showPasswordSuggestion, setShowPasswordSuggestion] = useState(false);
     const [passwordSuggestion, setPasswordSuggestion] = useState('');
     const [selectedState, setSelectedState] = useState('');
+    const [showLatLong, setShowLatLong] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowGradient(true);
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     const CENSUS_API = import.meta.env.VITE_REACT_APP_CENSUS_API;
 
@@ -39,8 +51,7 @@ function SignUp() {
         setZipCode(zip);
 
         if (zip.length === 5) {
-            //TODO: Make latLong visible
-            fetch(`https://api.zippopotam.us/us/${zip}`)
+            fetch(`https://csumb.space/api/cityInfoAPI.php?zip=${zip}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Zip code not found.');
@@ -48,22 +59,29 @@ function SignUp() {
                     return response.json();
                 })
                 .then(data => {
-                    setCity(data.places[0]['place name']);
-                    setLongitude(data.places[0].longitude);
-                    setLatitude(data.places[0].latitude);
+                    if (data === false) {
+                        throw new Error('Zip code not found.');
+                    }
+
+                    setCity(data.city);
+                    setLongitude(data.longitude);
+                    setLatitude(data.latitude);
                     setZipError('');
+                    setShowLatLong(true);
                 })
                 .catch(() => {
                     setCity('');
                     setLongitude('');
                     setLatitude('');
                     setZipError('Zip code not found');
+                    setShowLatLong(false);
                 });
         } else {
             setCity('');
             setLongitude('');
             setLatitude('');
             setZipError('');
+            setShowLatLong(false);
         }
     };
 
@@ -85,13 +103,15 @@ function SignUp() {
         const user = e.target.value;
         setUsername(user);
 
-        setTimeout(() => {
-            if (user === 'takenUsername') {
+        fetch(`https://csumb.space/api/usernamesAPI.php?username=${user}`)
+            .then(response => response.json())
+            .then(data => {
+                setUsernameAvailable(!data.takenUsername);
+            })
+            .catch(error => {
+                console.error('Error fetching username availability: ', error);
                 setUsernameAvailable(false);
-            } else {
-                setUsernameAvailable(true);
-            }
-        }, 500);
+            })
     };
 
     const handlePasswordFocus = () => {
@@ -125,12 +145,13 @@ function SignUp() {
     };
 
     return (
-        <>
+        <>  
+            {showGradient && <div className="gradient-background-signup" />}
             <Nav />
-            <div className="container mt-5">
-                <h1 className="text-center" style={{ marginTop: "10vh"}}>Sign Up</h1>
-                <form onSubmit={handleSubmit}>
-                    <div className='latLong' style={{ marginTop: '2rem', display: 'none'}}>
+            <div className="content">
+                <h1 className="fade-in" style={{ marginTop: "5vh"}}>Sign Up</h1>
+                <form className="fade-in delay-1s" onSubmit={handleSubmit}>
+                    <div className='latLong' style={{ marginTop: '1rem', display: showLatLong ? 'block' : 'none'}}>
                         <p>Longitude: {longitude}</p>
                         <p>Latitude: {latitude}</p>
                     </div>
@@ -187,10 +208,10 @@ function SignUp() {
                             onChange={handleUsernameChange}
                         />
                         {usernameAvailable === false && (
-                            <small className="text-danger">Username is not available</small>
+                            <p className="text-danger">Username is not available 🐽</p>
                         )}
                         {usernameAvailable === true && (
-                            <small className="text-success">Username is available</small>
+                            <p className="text-success">Username is available!</p>
                         )}
                     </div>
                     <div className="form-group">

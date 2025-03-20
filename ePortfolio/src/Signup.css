@@ -1,3 +1,24 @@
+.gradient-background-signup {
+    background: radial-gradient(circle at top center, rgb(0, 212, 201) 0%, rgba(0,12,31,1) 40%, rgba(0,12,31,1) 100%);
+    opacity: 0;
+    animation: gradientFadeIn 2s forwards;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+h1 {
+    position: static;
+}
+
 .latlong {
-    display: flex;
+    opacity: 0;
+    transition: opacity 1s ease-in
+}
+
+.latLong.show {
+    opacity: 1;
 }

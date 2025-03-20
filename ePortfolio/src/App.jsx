@@ -13,6 +13,7 @@ import Hw1_3 from './Hw1_3.jsx'
 import Lab2 from './Lab2.jsx'
 import Hw2 from './Hw2.jsx'
 import Signup from './Signup.jsx'
+import Welcome from './Welcome.jsx'
 
 function Home() {
   const [showGradient, setShowGradient] = useState(false);
@@ -59,6 +60,7 @@ function App() {
         <Route path="/lab2" element={<Lab2 />} />
         <Route path="/hw2" element={<Hw2 />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/welcome" element={<Welcome />} />
       </Routes>
     </Router>
   );
