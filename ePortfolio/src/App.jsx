@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css'
-import Footer from './footer'
+import Footer from './Footer.jsx'
 import Crunch from './assets/Crunch.jpg'
 import Nav from './Nav.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -14,6 +14,7 @@ import Lab2 from './Lab2.jsx'
 import Hw2 from './Hw2.jsx'
 import Signup from './Signup.jsx'
 import Welcome from './Welcome.jsx'
+import Hw3 from './Hw3.jsx'
 
 function Home() {
   const [showGradient, setShowGradient] = useState(false);
@@ -61,6 +62,7 @@ function App() {
         <Route path="/hw2" element={<Hw2 />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/welcome" element={<Welcome />} />
+        <Route path="/hw3" element={<Hw3 />} />
       </Routes>
     </Router>
   );
