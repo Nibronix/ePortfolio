@@ -38,14 +38,14 @@ function Hw3() {
                     throw new Error('Error fetching data.');
                 }
 
-                setFirstName(data.firstname);
-                setLastName(data.lastname);
-                setEmail(data.email);
-                setBirthday(data.birthday);
-                setGender(data.gender);
-                setAddress(data.street);
-                setCity(data.city);
-                setCountry(data.country);
+                setFirstName(data.data[0].firstname);
+                setLastName(data.data[0].lastname);
+                setEmail(data.data[0].email);
+                setBirthday(data.data[0].birthday);
+                setGender(data.data[0].gender);
+                setAddress(data.data[0].address.street);
+                setCity(data.data[0].address.city);
+                setCountry(data.data[0].address.country);
 
                 console.log(data);
             });
@@ -65,8 +65,8 @@ function Hw3() {
                     > Fake Person
                 </button>
 
-                <p> Wee
-                    {firstName}
+                <p onChange={handlePerson}>
+                    Name: {firstName} {lastName} 
                 </p>
             </div>
 
