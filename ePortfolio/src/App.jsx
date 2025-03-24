@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css'
-import Footer from './Footer.jsx'
+import Footer from './Footer'
 import Crunch from './assets/Crunch.jpg'
 import Nav from './Nav.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
