@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css'
-import Footer from './footer.jsx'
+import Footer from './Footer.jsx'
 import Nav from './Nav.jsx'
 import FOV from './assets/FOV.jpg'
 import FOV2 from './assets/FOV2.jpg'
