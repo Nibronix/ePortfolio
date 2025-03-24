@@ -52,7 +52,6 @@ h1 {
 h1.fade-in {
   position: static;
   justify-content: center;
-  align-items: center;
   margin: 0;
   padding: 2rem 0;
 }

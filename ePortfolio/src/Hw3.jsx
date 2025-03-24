@@ -40,6 +40,11 @@ function Hw3() {
     const askPersonQuantity = () => {
         setShowPersonQuantity(true);
     }
+
+    const hidePerson = () => {
+        setShowPersonDetails(false);
+        setShowPersonQuantity(false);
+    }
     
     const handlePerson = () => {
         const gender = Math.round(Math.random());
@@ -120,24 +125,24 @@ function Hw3() {
         <>
             {showGradient && <div className="gradient-background-hw3" />}
             <Nav />
-            <h1 className="fade-in" style={{marginTop: "5rem"}}>Homework 3<br/>Faker</h1>
-            <p className="fade-in delay-1s">Fetch any fake data at the click of a button.</p>
+            <h1 className="fade-in" style={{marginTop: "5rem", display: showPersonDetails ? 'none' : 'block' }}>Homework 3<br/>Faker</h1>
+            <p className="fade-in delay-1s" style={{ display: showPersonDetails ? 'none' : 'block' }}>Fetch fake data at the click of a button.</p>
 
-            <div className="content" style = {{marginTop: "-8rem"}}>
+            <div style={{paddingTop: '5rem'}}>
                 
-                <button className="btn-hw3 fade-in delay-2s"
+                <button className="btn-hw3 fade-in delay-2s" style={{ display: showPersonDetails ? 'none' : 'inline' }}
                     onClick={askPersonQuantity}
                     > Fake Person
                 </button>
 
-                <button className="btn-hw3 fade-in delay-2s"
+                <button className="btn-hw3 fade-in delay-2s" style={{ display: showPersonDetails ? 'none' : 'inline' }}
                     onClick={handleCompany}
                     > Fake Company
                 </button>
 
-                <div style= {{marginTop: '2rem'}}>
+                <div className="details-wrapper-hw3">
                     {firstName.map((_, index) => (
-                        <p key={index} className="fade-in" style={{ display: showPersonDetails ? 'block' : 'none'}}>
+                        <p key={index} style={{ display: showPersonDetails ? 'block' : 'none', height: 'auto'}}>
                             Name: {firstName[index]} {lastName[index]}
                             <br></br>
                             Email: {email[index]}
@@ -183,6 +188,16 @@ function Hw3() {
                     </form>
 
                 </div>
+
+                <form style={{ display:showPersonDetails ? 'block' : 'none'}}>
+                        <button
+                            className="btn-hw3"
+                            type="button"
+                            onClick={hidePerson}
+                        >
+                            Back
+                        </button>
+                </form>
                 
             </div>
 
