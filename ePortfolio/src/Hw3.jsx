@@ -38,6 +38,7 @@ function Hw3() {
 
     const askPersonQuantity = () => {
         setShowPersonQuantity(true);
+        setShowCompanyQuantity(false);
     }
 
     const hidePerson = () => {
@@ -118,6 +119,7 @@ function Hw3() {
 
     const askCompanyQuantity = () => {
         setShowCompanyQuantity(true);
+        setShowPersonQuantity(false);
     }
 
     const hideCompany = () => {
