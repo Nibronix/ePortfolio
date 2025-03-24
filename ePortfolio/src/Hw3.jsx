@@ -14,15 +14,16 @@ function Hw3() {
     })
 
     // Person
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [birthday, setBirthday] = useState('');
-    const [gender, setGender] = useState('');
-    const [address, setAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [country, setCountry] = useState('');
-    const [showPerson, setShowPerson] = useState('');
+    const [firstName, setFirstName] = useState([]);
+    const [lastName, setLastName] = useState([]);
+    const [email, setEmail] = useState([]);
+    const [birthday, setBirthday] = useState([]);
+    const [gender, setGender] = useState([]);
+    const [address, setAddress] = useState([]);
+    const [city, setCity] = useState([]);
+    const [country, setCountry] = useState([]);
+    const [showPersonQuantity, setShowPersonQuantity] = useState(false);
+    const [showPersonDetails, setShowPersonDetails] = useState(false);
     const [sex, setSex] = useState('');
     const [personQuantity, setPersonQuantity] = useState('');
 
@@ -32,10 +33,17 @@ function Hw3() {
     const [companyAddress, setCompanyAddress] = useState('');
     const [companyCity, setCompanyCity] = useState('');
     const [companyCountry, setCompanyCountry] = useState('');
-    const [showCompany, setShowCompany] = useState('');
+    const [showCompanyQuantity, setShowCompanyQuantity] = useState('');
+    const [showCompanyDetails, setShowCompanyDetails] = useState('');
+    const [companyQuantity, setCompanyQuantity] = useState('');
+
+    const askPersonQuantity = () => {
+        setShowPersonQuantity(true);
+    }
     
     const handlePerson = () => {
         const gender = Math.round(Math.random());
+        setShowPersonQuantity(false);
 
         if (gender === 0) {
             setSex("male");
@@ -58,19 +66,27 @@ function Hw3() {
                 throw new Error('Error fetching data.');
             }
             
-            // Have sets for different quantity of people. {personQuantity}.
+            const firstNames = data.data.map(person => person.firstname);
+            const lastNames = data.data.map(person => person.lastname);
+            const emails = data.data.map(person => person.email);
+            const birthdays = data.data.map(person => person.birthday);
+            const genders = data.data.map(person => person.gender);
+            const addresses = data.data.map(person => person.address.street);
+            const cities = data.data.map(person => person.address.city);
+            const countries = data.data.map(person => person.address.country);
             
-            setFirstName(data.data[0].firstname);
-            setLastName(data.data[0].lastname);
-            setEmail(data.data[0].email);
-            setBirthday(data.data[0].birthday);
-            setGender(data.data[0].gender);
-            setAddress(data.data[0].address.street);
-            setCity(data.data[0].address.city);
-            setCountry(data.data[0].address.country);
+            setFirstName(firstNames);
+            setLastName(lastNames);
+            setEmail(emails);
+            setBirthday(birthdays);
+            setGender(genders);
+            setAddress(addresses);
+            setCity(cities);
+            setCountry(countries);
 
-            setShowPerson(true);
-            setShowCompany(false);
+            setShowPersonDetails(true);
+            setShowCompanyDetails(false);
+            setShowCompanyQuantity(false);
         });
     }
 
@@ -94,7 +110,7 @@ function Hw3() {
             setCompanyCountry(data.data[0].addresses[0].country);
 
             setShowPerson(false);
-            setShowCompany(true);
+            setShowCompanyDetails(true);
 
         })
             
@@ -107,9 +123,10 @@ function Hw3() {
             <h1 className="fade-in" style={{marginTop: "5rem"}}>Homework 3<br/>Faker</h1>
             <p className="fade-in delay-1s">Fetch any fake data at the click of a button.</p>
 
-            <div style = {{marginTop: "1rem"}}>
+            <div className="content" style = {{marginTop: "-8rem"}}>
+                
                 <button className="btn-hw3 fade-in delay-2s"
-                    onClick={handlePerson}
+                    onClick={askPersonQuantity}
                     > Fake Person
                 </button>
 
@@ -119,21 +136,24 @@ function Hw3() {
                 </button>
 
                 <div style= {{marginTop: '2rem'}}>
-                    <p className= "fade-in" style ={{ display: showPerson ? 'block' : 'none'}}>
-                        Name: {firstName} {lastName}
-                        <br></br>
-                        Email: {email}
-                        <br></br>
-                        Birthday: {birthday}
-                        <br></br>
-                        <span style={{ textTransform: 'capitalize' }}>Gender: {gender}</span>
-                        <br></br>
-                        Address: {address}, {city}
-                        <br></br>
-                        {country}
-                    </p>
+                    {firstName.map((_, index) => (
+                        <p key={index} className="fade-in" style={{ display: showPersonDetails ? 'block' : 'none'}}>
+                            Name: {firstName[index]} {lastName[index]}
+                            <br></br>
+                            Email: {email[index]}
+                            <br></br>
+                            Birthday: {birthday[index]}
+                            <br></br>
+                            <span style={{ textTransform: 'capitalize' }}>Gender: {gender[index]}</span>
+                            <br></br>
+                            Address: {address[index]}, {city[index]}
+                            <br></br>
+                            {country[index]}
+                        </p>
+                    ))}
 
-                    <p className= "fade-in" style ={{ display: showCompany ? 'block' : 'none'}}>
+
+                    <p className= "fade-in" style ={{ display: showCompanyDetails ? 'block' : 'none'}}>
                         Company: {companyName}
                         <br></br>
                         Email: {companyEmail}
@@ -142,6 +162,25 @@ function Hw3() {
                         <br></br>
                         {companyCountry}
                     </p>
+
+                    <form style={{ display: showPersonQuantity ? 'block' : 'none'}}>
+                        <label>
+                            How many people?
+                            <input
+                                className="form-control-hw3"
+                                type="number"
+                                value={personQuantity}
+                                onChange={(e) => setPersonQuantity(e.target.value)}
+                            />
+                        </label>
+                        <button
+                            className="btn-hw3"
+                            type="button"
+                            onClick={handlePerson}
+                        >
+                            Submit
+                        </button>
+                    </form>
 
                 </div>
                 

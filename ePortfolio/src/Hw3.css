@@ -23,6 +23,7 @@
     justify-content: center;
     margin-bottom: 1rem;
     margin-right: 1rem;
+    
 }
 
 .btn-hw3:not(:disabled):hover {
@@ -32,3 +33,19 @@
     border: 2px solid white;
     transform: scale(1.05);
 }
+
+.form-control-hw3 {
+    background-color: rgba(0, 0, 0, 0);
+    border: 2px solid white;
+    border-radius: 12px;
+    color: white;
+    padding: 10px;
+    outline: none;
+    font-size: 24px;
+    width: 100px;
+    height: 50px;
+    transition: all 0.3s ease;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
