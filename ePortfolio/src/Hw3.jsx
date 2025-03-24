@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import './Hw3.css';
-import Footer from './Footer.jsx';
+import Footer from './footer.jsx';
 import Nav from './Nav.jsx';
 
 function Hw3() {

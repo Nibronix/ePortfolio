@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css'
-import Footer from './Footer.jsx'
+import Footer from './footer.jsx'
 import Nav from './Nav.jsx'
 import VR_Stuff from './assets/VR_Stuff.jpg'
 import VR_Stuff2 from './assets/VR_Stuff2.jpg'

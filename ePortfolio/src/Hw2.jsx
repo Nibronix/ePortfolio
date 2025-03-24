@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css'
-import Footer from './Footer.jsx'
+import Footer from './footer.jsx'
 import Nav from './Nav.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Hw2.css'
