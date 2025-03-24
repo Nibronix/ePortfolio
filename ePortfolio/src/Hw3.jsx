@@ -27,13 +27,13 @@ function Hw3() {
     const [personQuantity, setPersonQuantity] = useState('');
 
     // Company
-    const [companyName, setCompanyName] = useState('');
-    const [companyEmail, setCompanyEmail] = useState('');
-    const [companyAddress, setCompanyAddress] = useState('');
-    const [companyCity, setCompanyCity] = useState('');
-    const [companyCountry, setCompanyCountry] = useState('');
-    const [showCompanyQuantity, setShowCompanyQuantity] = useState('');
-    const [showCompanyDetails, setShowCompanyDetails] = useState('');
+    const [companyName, setCompanyName] = useState([]);
+    const [companyEmail, setCompanyEmail] = useState([]);
+    const [companyAddress, setCompanyAddress] = useState([]);
+    const [companyCity, setCompanyCity] = useState([]);
+    const [companyCountry, setCompanyCountry] = useState([]);
+    const [showCompanyQuantity, setShowCompanyQuantity] = useState(false);
+    const [showCompanyDetails, setShowCompanyDetails] = useState(false);
     const [companyQuantity, setCompanyQuantity] = useState('');
 
     const askPersonQuantity = () => {
@@ -85,7 +85,9 @@ function Hw3() {
     }
 
     const handleCompany = () => {
-        fetch(`https://fakerapi.it/api/v2/companies?_quantity=1`)
+        setShowCompanyQuantity(false);
+
+        fetch(`https://fakerapi.it/api/v2/companies?_quantity=${companyQuantity}`)
         .then(response => {
             if(!response.ok) {
                 throw new Error('Error fetching response.');
@@ -97,35 +99,48 @@ function Hw3() {
                 throw new Error('Error fetching data.');
             }
 
-            setCompanyName(data.data[0].name);
-            setCompanyEmail(data.data[0].email);
-            setCompanyAddress(data.data[0].addresses[0].street + " " + data.data[0].addresses[0].streetName);
-            setCompanyCity(data.data[0].addresses[0].city);
-            setCompanyCountry(data.data[0].addresses[0].country);
+            const companyNames = data.data.map(company => company.name);
+            const companyEmails = data.data.map(company => company.email);
+            const companyAddresses = data.data.map(company => company.addresses[0].street);
+            const companyCities = data.data.map(company => company.addresses[0].city);
+            const companyCountries = data.data.map(company => company.addresses[0].country);
 
-            setShowPerson(false);
+            setCompanyName(companyNames);
+            setCompanyEmail(companyEmails);
+            setCompanyAddress(companyAddresses);
+            setCompanyCity(companyCities);
+            setCompanyCountry(companyCountries);
+
             setShowCompanyDetails(true);
-
         })
             
+    }
+
+    const askCompanyQuantity = () => {
+        setShowCompanyQuantity(true);
+    }
+
+    const hideCompany = () => {
+        setShowCompanyDetails(false);
+        setShowCompanyQuantity(false);
     }
 
     return (
         <>
             {showGradient && <div className="gradient-background-hw3" />}
             <Nav />
-            <h1 className="fade-in" style={{marginTop: "5rem", display: showPersonDetails ? 'none' : 'block' }}>Homework 3<br/>Faker</h1>
-            <p className="fade-in delay-1s" style={{ display: showPersonDetails ? 'none' : 'block' }}>Fetch fake data at the click of a button.</p>
+            <h1 className="fade-in" style={{marginTop: "5rem", display: showPersonDetails || showCompanyDetails ? 'none' : 'block' }}>Homework 3<br/>Faker</h1>
+            <p className="fade-in delay-1s" style={{ display: showPersonDetails || showCompanyDetails ? 'none' : 'block' }}>Fetch fake data at the click of a button.</p>
 
             <div style={{paddingTop: '5rem'}}>
                 
-                <button className="btn-hw3 fade-in delay-2s" style={{ display: showPersonDetails ? 'none' : 'inline' }}
+                <button className="btn-hw3 fade-in delay-2s" style={{ display: showPersonDetails || showCompanyDetails ? 'none' : 'inline' }}
                     onClick={askPersonQuantity}
                     > Fake Person
                 </button>
 
-                <button className="btn-hw3 fade-in delay-2s" style={{ display: showPersonDetails ? 'none' : 'inline' }}
-                    onClick={handleCompany}
+                <button className="btn-hw3 fade-in delay-2s" style={{ display: showPersonDetails || showCompanyDetails ? 'none' : 'inline' }}
+                    onClick={askCompanyQuantity}
                     > Fake Company
                 </button>
 
@@ -146,16 +161,18 @@ function Hw3() {
                         </p>
                     ))}
 
-
-                    <p className= "fade-in" style ={{ display: showCompanyDetails ? 'block' : 'none'}}>
-                        Company: {companyName}
-                        <br></br>
-                        Email: {companyEmail}
-                        <br></br>
-                        Address: {companyAddress}, {companyCity}
-                        <br></br>
-                        {companyCountry}
-                    </p>
+                    {companyName.map((name, index) => (
+                        <p key={index} className= "fade-in" style ={{ display: showCompanyDetails ? 'block' : 'none'}}>
+                            Company: {name}
+                            <br></br>
+                            Email: {companyEmail[index]}
+                            <br></br>
+                            Address: {companyAddress[index]}, {companyCity[index]}
+                            <br></br>
+                            {companyCountry[index]}
+                        </p>
+                    ))}
+                    
 
                     <form style={{ display: showPersonQuantity ? 'block' : 'none'}}>
                         <label>
@@ -176,6 +193,25 @@ function Hw3() {
                         </button>
                     </form>
 
+                    <form style={{ display: showCompanyQuantity ? 'block' : 'none'}}>
+                        <label>
+                            How many companies?
+                            <input
+                                className="form-control-hw3"
+                                type="number"
+                                value={companyQuantity}
+                                onChange={(e) => setCompanyQuantity(e.target.value)}
+                            />
+                        </label>
+                        <button
+                            className="btn-hw3"
+                            type="button"
+                            onClick={handleCompany}
+                        >
+                            Submit
+                        </button>
+                    </form>
+
                 </div>
 
                 <form style={{ display:showPersonDetails ? 'block' : 'none'}}>
@@ -183,6 +219,16 @@ function Hw3() {
                             className="btn-hw3"
                             type="button"
                             onClick={hidePerson}
+                        >
+                            Back
+                        </button>
+                </form>
+
+                <form style={{ display:showCompanyDetails ? 'block' : 'none'}}>
+                        <button
+                            className="btn-hw3"
+                            type="button"
+                            onClick={hideCompany}
                         >
                             Back
                         </button>
