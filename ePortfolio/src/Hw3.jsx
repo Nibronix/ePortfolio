@@ -181,7 +181,7 @@ function Hw3() {
                                 className="form-control-hw3"
                                 type="number"
                                 value={personQuantity}
-                                onChange={(e) => setPersonQuantity(e.target.value)}
+                                onChange={(e) => setPersonQuantity(Math.max(1, e.target.value))}
                             />
                         </label>
                         <button
@@ -200,7 +200,7 @@ function Hw3() {
                                 className="form-control-hw3"
                                 type="number"
                                 value={companyQuantity}
-                                onChange={(e) => setCompanyQuantity(e.target.value)}
+                                onChange={(e) => setCompanyQuantity(Math.max(1, e.target.value))}
                             />
                         </label>
                         <button
