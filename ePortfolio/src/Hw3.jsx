@@ -24,7 +24,6 @@ function Hw3() {
     const [country, setCountry] = useState([]);
     const [showPersonQuantity, setShowPersonQuantity] = useState(false);
     const [showPersonDetails, setShowPersonDetails] = useState(false);
-    const [sex, setSex] = useState('');
     const [personQuantity, setPersonQuantity] = useState('');
 
     // Company
@@ -47,19 +46,9 @@ function Hw3() {
     }
     
     const handlePerson = () => {
-        const gender = Math.round(Math.random());
         setShowPersonQuantity(false);
 
-        if (gender === 0) {
-            setSex("male");
-        } else {
-            setSex("female");
-        }
-
-        console.log("Sex: " + sex);
-        console.log("Gender: " + gender);
-
-        fetch(`https://fakerapi.it/api/v2/persons?_quantity=${personQuantity}&_gender=${sex}&_birthday_start=2005-01-01`)
+        fetch(`https://fakerapi.it/api/v2/persons?_quantity=${personQuantity}`)
         .then(response => {
             if(!response.ok) {
                 throw new Error('Error fetching response.');
